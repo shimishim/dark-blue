@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 .DS_Store
 node_modules/
 .vscode/
 .env
+=======
+.DS_Store
+node_modules/
+.vscode/
+.env
+>>>>>>> 7471909 (update)

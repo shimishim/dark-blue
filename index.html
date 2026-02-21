@@ -325,6 +325,56 @@
 				from { opacity: 0; transform: scale(0.7); }
 				to   { opacity: 1; transform: scale(1); }
 			}
+
+			.article.read-mark {
+				position: relative;
+			}
+
+			.article.read-mark::after {
+				content: "✔";
+				position: absolute;
+				top: 1rem;
+				left: 3.5rem;
+				color: #4CAF50;
+				font-size: 1.6rem;
+				opacity: 0;
+				transform: scale(0.7);
+				animation: showCheck 0.3s forwards ease-out;
+			}
+
+			.article.liked h5::before,
+			.article.ltr.liked h3::before {
+				content: "❤";
+				position: absolute;
+				top: -0.5rem;
+        		left: 4rem;
+				color: red;
+				font-size: 1.6rem;
+				opacity: 0;
+				transform: scale(0.7);
+				animation: showLike 0.3s forwards ease-out;
+			}
+
+			.article.ltr.read-mark::after {
+        		left: unset;
+				right: 3.5rem;
+
+			}
+			
+			.article.ltr.liked h3::before {
+        		left: unset;
+				right: 4rem;
+			}
+
+			@keyframes showCheck {
+				from { opacity: 0; transform: scale(0.7); }
+				to   { opacity: 1; transform: scale(1); }
+			}
+
+			@keyframes showLike {
+				from { opacity: 0; transform: scale(0.7); }
+				to   { opacity: 1; transform: scale(1); }
+			}
 		}
 
 		@media (min-width: 701px) {
@@ -341,6 +391,10 @@
 <body>
  	<a href="index.html"><h1>כחול <strong>עמוק</strong>, ❥️ של אטישוק</h1></a>
 	<script>
+	if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+		navigator.serviceWorker.register('sw.js')
+			.catch(err => console.log('SW registration failed:', err));
+		}
 	if ('serviceWorker' in navigator && location.protocol !== 'file:') {
 		navigator.serviceWorker.register('sw.js')
 			.catch(err => console.log('SW registration failed:', err));
@@ -400,9 +454,39 @@
 				לבאות
 			</p>
 		</article>
+		<article class="article" data-category="cat2">
+			<h5>25/02/2026</h5>
+			<h3>התחלה</h3>
+			<img src="images/lpo.gif" alt="התחלה">
+			<p>
+				מה זו התחלה?
+				איפה היא מתחילה, איפה היא מסתיימת
+				אני חולם?
+				אני בתוך חלום?
+				זו מראה כחולה למרחקים ארוכים
+				שקשורה בחוט דנטלי לליחשושים
+				עוור בלב ים
+				מי אותו יציל?
+				<span></span>
+				זה מסע ארוך בנבכי התודעה
+				זה מסע שהוא מעמסה
+				מסאבחה = מסע בך
+				<span></span>
+				מהדקים חגורות
+				הכל טוב בכדור הארץ
+				רוצים לראות?
+				תרימו את הראש מעל המים
+				ותפסיקו להשתטות
+				תהיו מים צוננים
+				שמתחממים בצינורות
+				של הגוף שלכם
+				לבאות
+			</p>
+		</article>
 		<article class="article" data-category="cat1">
 			<h5>20/08/2016 21:58</h5>
 			<h3>מתי אתה בא?</h3>
+			<img src="images/when.gif" alt="מתי אתה בא?">
 			<img src="images/when.gif" alt="מתי אתה בא?">
 			<p>
 				היא שואלת
@@ -418,6 +502,7 @@
 		<article class="article" data-category="cat1">
 			<h5>21/08/2016 23:13</h5>
 			<h3>הלילה היה לח</h3>
+			<img src="images/lpo.webp" alt="הלילה היה לח">
 			<img src="images/lpo.webp" alt="הלילה היה לח">
 			<p>
 				כמו הכוס שלה
@@ -499,6 +584,7 @@
 		<article class="article" data-category="cat1">
 			<h5>24/08/2016 00:11</h5>
 			<h3>התמסרות</h3>
+			<img src="images/devotion.webp" alt="התמסרות">
 			<img src="images/devotion.webp" alt="התמסרות">
 			<p>
 				היא מתמסרת בקלות
@@ -597,6 +683,7 @@
 			<h5>25/08/2016 01:23</h5>
 			<h3>כח המשיכה</h3>
 			<img src="images/gravity.webp" alt="כח המשיכה">
+			<img src="images/gravity.webp" alt="כח המשיכה">
 			<p>
 				יש אנשים שמטפסים על הרים, אחרים רוכבים על אופניים
 				יש כאלה שהם מגנט הפוך - דוחים את בני המין השני...
@@ -605,6 +692,7 @@
 				יש להם כח כזה
 				כח משיכה
 				<span></span>
+				כשהיא מעבירה יד בשערה
 				כשהיא מעבירה יד בשערה
 				הזין שלך עומד
 				כשהיא מחייכת הדם שלך זורם
@@ -653,6 +741,7 @@
 			<h5>25/08/2016 14:02</h5>
 			<h3>שאלה של השקפה</h3>
 			<img src="images/aq.webp" alt="שאלה של השקפה">
+			<img src="images/aq.webp" alt="שאלה של השקפה">
 			<p>
 				מה שלום השיער שלך היום?
 				חום, ריחני וארוך קטיפתי, למה?
@@ -667,6 +756,7 @@
 		<article class="article" data-category="cat1">
 			<h5>26/08/2016 01:13</h5>
 			<h3>חושבת עליו ומתגעגת</h3>
+			<img src="images/thinkhim.webp" alt="חושבת עליו ומתגעגת">
 			<img src="images/thinkhim.webp" alt="חושבת עליו ומתגעגת">
 			<p>
 				חושבת עליו ומתגעגת
@@ -693,6 +783,7 @@
 		<article class="article" data-category="cat1">
 			<h5>27/08/2016 02:12</h5>
 			<h3>לפני שאת מתפשטת</h3>
+			<img src="images/29070794.jpg" alt="לפני שאת מתפשטת">
 			<img src="images/29070794.jpg" alt="לפני שאת מתפשטת">
 			<p>
 				לפני שאת מתפשטת
@@ -732,6 +823,7 @@
 		<article class="article" data-category="cat1">
 			<h5>28/08/2016 00:18</h5>
 			<h3>ברגע של חולשה</h3>
+			<img src="images/29071070.jpg" alt="ברגע של חולשה">
 			<img src="images/29071070.jpg" alt="ברגע של חולשה">
 			<p>
 				ברגע של חולשה
@@ -809,6 +901,7 @@
 			<h5>29/08/2016 10:40</h5>
 			<h3>בצהרי היום</h3>
 			<img src="images/29071068.jpg" alt="בצהרי היום">
+			<img src="images/29071068.jpg" alt="בצהרי היום">
 			<p>
 				היה לה את הקול הכי סקסי בעולם
 				כזה שגורם לך לדמיין שאתה בבר מעופש עם כל החסרי חיים ופתאום עולה לרקוד ננסי החושנית (ג'סיקה אלבה) בסין סיטי
@@ -849,6 +942,7 @@
 				<span></span>
 				לא עברה דקה
 				ולפתע הגיע רכה שיצא ממנו אדם משופם עם כובע של יאצק (רק בלי אקורדיון)
+				ולפתע הגיע רכה שיצא ממנו אדם משופם עם כובע של יאצק (רק בלי אקורדיון)
 				(כנראה שהפעלנו לו את האזעקה...)
 				פנה אלינו ושאל:
 				"אתם מחפשים פה משהו?"
@@ -869,6 +963,7 @@
 		<article class="article" data-category="cat1">
 			<h5>30/08/2016 11:07</h5>
 			<h3>את מוכנה להתחיל?</h3>
+			<img src="images/29072082.jpg" alt="את מוכנה להתחיל?">
 			<img src="images/29072082.jpg" alt="את מוכנה להתחיל?">
 			<p>
 				אני יכולה להיות צפרדע
@@ -897,6 +992,7 @@
 		<article class="article" data-category="cat1">
 			<h5>31/08/2016 02:26</h5>
 			<h3>מחר אני טסה</h3>
+			<img src="images/29072252.jpg" alt="מחר אני טסה">
 			<img src="images/29072252.jpg" alt="מחר אני טסה">
 			<p>
 				מחר אני טסה, שכחת?
@@ -955,6 +1051,7 @@
 			<h5>31/08/2016 21:54</h5>
 			<h3>סתום שניה ותן לי להשחיל מילה</h3>
 			<img src="images/29072168.jpg" alt="סתום שניה ותן לי להשחיל מילה">
+			<img src="images/29072168.jpg" alt="סתום שניה ותן לי להשחיל מילה">
 			<p>
 				אני אוהבת שאני עליך כל היום חושבת
 				שונאת שאתה מתלהב ואז סתם מהנהן או שואל מתי יש רכבת?
@@ -966,6 +1063,7 @@
 				ולפעמים שת'זיין לי את הצורה
 				אבל לפעמים מחשבה עולה לי
 				לשתול בלב שלך וירוס ויראלי
+				לטוס לחו"ל לאיזה חודש
 				לטוס לחו"ל לאיזה חודש
 				נראה אותך חולם עליי ומפציץ אותי בוואצ'אפים: "את חייבת לחזור מיד, אני מרגיש בעונש"
 				אולי אז ישתחרר לך הרגש
@@ -995,6 +1093,7 @@
 		<article class="article" data-category="cat2">
 			<h5>01/09/2016 16:31</h5>
 			<h3>וואייק up יו ניד 2 מייק מאני</h3>
+			<img src="images/wuuntmm.webp" alt="וואייק up יו ניד 2 מייק מאני">
 			<img src="images/wuuntmm.webp" alt="וואייק up יו ניד 2 מייק מאני">
 			<p>
 				יש לך 100 שקל?
@@ -1026,6 +1125,7 @@
 			<h5>02/09/2016 10:44</h5>
 			<h3>כן, בדיוק שם</h3>
 			<img src="images/29072746.jpg" alt="כן, בדיוק שם">
+			<img src="images/29072746.jpg" alt="כן, בדיוק שם">
 			<p>
 				כן, בדיוק שם, זו הנקודה, היא ממלמלת וגונחת חרישית בקול הטופי שלה
 				חצי שעה קודם לכן היא עדיין ישנה
@@ -1041,6 +1141,7 @@
 				מתעכב על הברכיים שלה
 				אוחז רגל אחת מרים אותה לאט מכופף ושוקע במפרק הברך הפנימי שלה
 				לשון רטובה בתוך ברך חלקה
+				מפסקת את רגליה לפתע
 				מפסקת את רגליה לפתע
 				מתפתלת כנחש
 				<span></span>
@@ -1097,6 +1198,7 @@
 				עד שהיא פולטת אנחת רווחה
 				בחצי צעקה
 				חיוך כל כך מתוק נח לפתע על הפנים שלה
+				חיוך כל כך מתוק נח לפתע על הפנים שלה
 				כשהיא בי מביטה מומסת למדיי
 				ואומרת: "בוקר טוב כוכב, <strong>תעיר אותי ככה גם מחר?"</strong>
 			</p>
@@ -1104,6 +1206,7 @@
 		<article class="article" data-category="cat1">
 			<h5>02/09/2016 23:58</h5>
 			<h3>הוילון הירוק של מיסטר מיאגי</h3>
+			<img src="images/29072988.jpg" alt="הוילון הירוק של מיסטר מיאגי">
 			<img src="images/29072988.jpg" alt="הוילון הירוק של מיסטר מיאגי">
 			<p>
 				הוילון הירוק מסאטן תמיד הרגיש לי מיוחד
@@ -1204,6 +1307,7 @@
 			<h5>05/09/2016 00:58</h5>
 			<h3>סתם מחשב!ת•••</h3>
 			<img src="images/thots.webp" alt="סתם מחשב!ת">
+			<img src="images/thots.webp" alt="סתם מחשב!ת">
 			<p>
 				מחשבות
 				כאלה ואחרות
@@ -1260,6 +1364,7 @@
 		<article class="article" data-category="cat2">
 			<h5>05/09/2016 03:15</h5>
 			<h3>מה זה קשור לפה?</h3>
+			<img src="images/wtf.webp" alt="מה זה קשור לפה?">
 			<img src="images/wtf.webp" alt="מה זה קשור לפה?">
 			<p>
 				מה זה קשור לפה אין לי מושג
@@ -1326,6 +1431,7 @@
 			<h5>05/09/2016 12:36</h5>
 			<h3>כשאת נוגעת</h3>
 			<img src="images/29073538.png" alt="כשאת נוגעת">
+			<img src="images/29073538.png" alt="כשאת נוגעת">
 			<p>
 				כשאת נוגעת בעצמך <strong>נהיה לי חם</strong>
 				כשאני מביט בך מהצד ואת שוכבת לך שם לבד מרגיש לי קר
@@ -1342,6 +1448,7 @@
 		<article class="article" data-category="cat2">
 			<h5>06/09/2016 10:15</h5>
 			<h3>תקליטים?</h3>
+			<img src="images/29073540.jpg" alt="תקליטים?">
 			<img src="images/29073540.jpg" alt="תקליטים?">
 			<p>
 				יש לה אוסף תקליטים
@@ -1364,6 +1471,7 @@
 		<article class="article" data-category="cat1">
 			<h5>07/09/2016 02:18</h5>
 			<h3>מתחיל להיות נעים בערב</h3>
+			<img src="images/29074070.jpg" alt="מתחיל להיות נעים בערב">
 			<img src="images/29074070.jpg" alt="מתחיל להיות נעים בערב">
 			<p>
 				מתחיל להיות נעים בערב
@@ -1398,6 +1506,7 @@
 		<article class="article" data-category="cat1">
 			<h5>10/09/2016 01:52</h5>
 			<h3>פסטה פסטו פטריות</h3>
+			<img src="images/29074712.jpg" alt="פסטה פסטו פטריות">
 			<img src="images/29074712.jpg" alt="פסטה פסטו פטריות">
 			<p>
 				רוצה פסטה פסטו פטריות
@@ -1464,6 +1573,7 @@
 			<h5>11/09/2016 14:28</h5>
 			<h3>אהבה</h3>
 			<img src="images/haava.jpg" alt="אהבה">
+			<img src="images/haava.jpg" alt="אהבה">
 			<p>	
 				<strong>אהבה,</strong> למה את ז*#ה
 				למה את לא באה כשאני רוצה
@@ -1506,6 +1616,7 @@
 			<h5>12/09/2016 10:58</h5>
 			<h3>דרייב מי קרייזי</h3>
 			<img src="images/sdmc.webp" alt="דרייב מי קרייזי">
+			<img src="images/sdmc.webp" alt="דרייב מי קרייזי">
 			<p>
 				שי דרייב מי קרייזי
 				פותחת את הדלת ונכנסת פנימה
@@ -1529,6 +1640,7 @@
 				<span></span>
 				החזיה הזאת עושה לי משהו
 				כנראה קצר קטן בראש
+				נדמה שהפיטמות הקטנות שלה הזדקרו לפתע
 				נדמה שהפיטמות הקטנות שלה הזדקרו לפתע
 				בא לי שהיא תוריד אותה
 				ואני אתלה אותה על המראה הפנימית
@@ -1621,6 +1733,7 @@
 			<h5>13/09/2016 00:45</h5>
 			<h3>קח אותי</h3>
 			<img src="images/71ea74aa82383b78d54b5a9daf84e183.jpg" alt="קח אותי">
+			<img src="images/71ea74aa82383b78d54b5a9daf84e183.jpg" alt="קח אותי">
 			<p>
 				קח אותי אני שלך
 				גש אליי לאט, אני שוכבת, מוכנה
@@ -1663,6 +1776,7 @@
 		<article class="article" data-category="cat1">
 			<h5>16/09/2016 12:59</h5>
 			<h3>האמת האחרת</h3>
+			<img src="images/thetruth.webp" alt="האמת האחרת">
 			<img src="images/thetruth.webp" alt="האמת האחרת">
 			<p>
 				"אחד ממני 
@@ -1711,6 +1825,7 @@
 		<article class="article" data-category="cat1">
 			<h5>18/09/2016 01:51</h5>
 			<h3>זה זמן טוב</h3>
+			<img src="images/tumblr_o6hyh5GbjO1smmu1uo1_500.png" alt="זה זמן טוב">
 			<img src="images/tumblr_o6hyh5GbjO1smmu1uo1_500.png" alt="זה זמן טוב">
 			<p>
 				לקשור לך את הידיים
@@ -1769,6 +1884,7 @@
 			<h5>20/09/2016 17:47</h5>
 			<h3>איזה זהב</h3>
 			<img src="images/tumblr_o6056pthlH1rhfekio1_540.gif" alt="איזה זהב">
+			<img src="images/tumblr_o6056pthlH1rhfekio1_540.gif" alt="איזה זהב">
 			<p>
 				הכל בראש שלי
 				רואה כוכבים מנצנצים
@@ -1808,6 +1924,7 @@
 			<h5>22/09/2016 15:42</h5>
 			<h3>רוצה להיות שם ושם</h3>
 			<img src="images/tumblr_notc1gX9sr1s4nnijo1_500.gif" alt="רוצה להיות שם ושם">
+			<img src="images/tumblr_notc1gX9sr1s4nnijo1_500.gif" alt="רוצה להיות שם ושם">
 			<p>
 				רוצה להיות בפה שלך
 				רוצה לנשוך את שפתייך מזה זמן
@@ -1831,6 +1948,7 @@
 		<article class="article" data-category="cat1">
 			<h5>24/09/2016 00:47</h5>
 			<h3>מה את עושה בזה</h3>
+			<img src="images/tumblr_o8v0hhqgkl1uwipo9o1_540.jpg" alt="מה את עושה בזה">
 			<img src="images/tumblr_o8v0hhqgkl1uwipo9o1_540.jpg" alt="מה את עושה בזה">
 			<p>
 				מה את עושה בזה
@@ -1872,6 +1990,7 @@
 			<h5>25/09/2016 16:37</h5>
 			<h3>אל תבקשי שמיים</h3>
 			<img src="images/tumblr_o1qt0crRZ91v6i8ico1_500.gif" alt="אל תבקשי שמיים">
+			<img src="images/tumblr_o1qt0crRZ91v6i8ico1_500.gif" alt="אל תבקשי שמיים">
 			<p>
 				ענני דדיים מבשרים שינוי במזג האוויר
 				תהפוכות מלכת הלב האדום שלך
@@ -1904,6 +2023,7 @@
 		<article class="article" data-category="cat1">
 			<h5>26/09/2016 00:14</h5>
 			<h3>לוחשת</h3>
+			<img src="images/tumblr_oafmtxuGVU1tliyzbo1_500.gif" alt="לוחשת">
 			<img src="images/tumblr_oafmtxuGVU1tliyzbo1_500.gif" alt="לוחשת">
 			<p>
 				לוחשת לי מילים שמזמן כבר לא שמעתי
@@ -1950,6 +2070,7 @@
 			<h5>28/09/2016 17:28</h5>
 			<h3>עוד לילה מתמוסס בין האצבעות</h3>
 			<img src="images/tumblr_oah2r7iuRl1s4nnijo1_500.gif" alt="עוד לילה מתמוסס בין האצבעות">
+			<img src="images/tumblr_oah2r7iuRl1s4nnijo1_500.gif" alt="עוד לילה מתמוסס בין האצבעות">
 			<p>
 				עוד לילה מתמוסס בין האצבעות
 				במילים אחרות, אולי כדאי לומר
@@ -1976,6 +2097,7 @@
 		<article class="article" data-category="cat1">
 			<h5>08/10/2016 01:27</h5>
 			<h3>אני רוצה</h3>
+			<img src="images/tumblr_nvki49aoFj1rzyciko1_500.gif" alt="אני רוצה">
 			<img src="images/tumblr_nvki49aoFj1rzyciko1_500.gif" alt="אני רוצה">
 			<p>
 				אני רוצה שתטריף אותי היום
@@ -2006,6 +2128,7 @@
 				<strong>אני!</strong>
 				<span></span>
 				<img src="images/tumblr_nzdrdoTU2N1so2d6xo1_500.gif" alt="אני רוצה להשאיר אותך בלי חזיה">
+				<img src="images/tumblr_nzdrdoTU2N1so2d6xo1_500.gif" alt="אני רוצה להשאיר אותך בלי חזיה">
 				אני רוצה להשאיר אותך בלי חזיה
 				לעטוף את השדיים שלך בזמן שאת את המיטה מחזיקה
 				בידיים שלך
@@ -2032,6 +2155,7 @@
 		<article class="article" data-category="cat1">
 			<h5>10/10/2016 12:19</h5>
 			<h3>חצאית עפרון</h3>
+			<img src="images/tumblr_ni3yxukQW01u4519ro1_400.gif" alt="חצאית עפרון">
 			<img src="images/tumblr_ni3yxukQW01u4519ro1_400.gif" alt="חצאית עפרון">
 			<p>
 				חצאית עפרון שחורה
@@ -2064,6 +2188,7 @@
 			<h5>13/10/2016 01:34</h5>
 			<h3>קפה? מה קפה</h3>
 			<img src="images/tumblr_nkadipVZbW1tezjkso1_500.gif	" alt="קפה? מה קפה">
+			<img src="images/tumblr_nkadipVZbW1tezjkso1_500.gif	" alt="קפה? מה קפה">
 			<p>
 				רוצה קפה?
 				מה קפה
@@ -2084,6 +2209,7 @@
 		<article class="article" data-category="cat2">
 			<h5>18/10/2016 12:20</h5>
 			<h3>סיידקיק - לפעמים</h3>
+			<img src="images/tumblr_oe8vgikILJ1uuppxfo1_500.gif" alt="לפעמים">
 			<img src="images/tumblr_oe8vgikILJ1uuppxfo1_500.gif" alt="לפעמים">
 			<p>
 				לפעמים אני שומעת את קולך
@@ -2114,6 +2240,7 @@
 		<article class="article" data-category="cat2">
 			<h5></h5>
 			<h3>סיידקיק - עכשיו</h3>
+			<img src="images/tumblr_o47vyvyy7m1vox6c0o1_400.gif" alt="עכשיו">
 			<img src="images/tumblr_o47vyvyy7m1vox6c0o1_400.gif" alt="עכשיו">
 			<p>
 				משחררת את ידי לעברך
@@ -2148,6 +2275,7 @@
 			<h5></h5>
 			<h3>סיידקיק - שוב</h3>
 			<img src="images/tumblr_of65ivulp11s2bgfho1_500.gif" alt="שוב">
+			<img src="images/tumblr_of65ivulp11s2bgfho1_500.gif" alt="שוב">
 			<p>
 				שוב לא נרדמת וחושבת עליך
 				מריצה בראש מחשבות
@@ -2174,6 +2302,7 @@
 		<article class="article" data-category="cat1">
 			<h5>22/10/2016 21:18</h5>
 			<h3>אני הולך</h3>
+			<img src="images/29087186.gif" alt="אני הולך">
 			<img src="images/29087186.gif" alt="אני הולך">
 			<p>
 				אני הולך לזיין לך את הצורה בשעה עגולה
@@ -2209,6 +2338,7 @@
 		<article class="article" data-category="cat1">
 			<h5>23/10/2016 23:41</h5>
 			<h3>שודד החזיות מעין חרוד (המאוחד)</h3>
+			<img src="images/29087512.gif" alt="שודד החזיות מעין חרוד (המאוחד)">
 			<img src="images/29087512.gif" alt="שודד החזיות מעין חרוד (המאוחד)">
 			<p>
 				הלילה היה לח
@@ -2266,6 +2396,7 @@
 			<h5>24/10/2016 21:51</h5>
 			<h3>בחולצה אדומה נעימה וגינס קרעים</h3>
 			<img src="images/tumblr_o8dktlTqQS1qkprgpo1_r2_540.gif" alt="בחולצה אדומה נעימה וגינס קרעים">
+			<img src="images/tumblr_o8dktlTqQS1qkprgpo1_r2_540.gif" alt="בחולצה אדומה נעימה וגינס קרעים">
 			<p>
 				היא יוצאת אל הדרכים
 				מלקטת אגוזים,
@@ -2316,6 +2447,7 @@
 			<h5>25/10/2016 19:55</h5>
 			<h3>אהבה לא גדלה על עצים את יודעת</h3>
 			<img src="images/tumblr_o6tjhb9NlT1twrbr9o1_r4_540.gif" alt="אהבה לא גדלה על עצים את יודעת">
+			<img src="images/tumblr_o6tjhb9NlT1twrbr9o1_r4_540.gif" alt="אהבה לא גדלה על עצים את יודעת">
 			<p>
 				<span class="red">אהבה</span> לא גדלה על עצים את יודעת
 				היא צומחת לאט 
@@ -2350,6 +2482,7 @@
 		<article class="article" data-category="cat2">
 			<h5>27/10/2016 01:45</h5>
 			<h3>אִינֶרְצִיָּיה בכחול אינקוגניטו</h3>
+			<img src="images/tumblr_ofgm6fYVFH1s8sgrro1_540.gif" alt="אִינֶרְצִיָּיה בכחול אינקוגניטו">
 			<img src="images/tumblr_ofgm6fYVFH1s8sgrro1_540.gif" alt="אִינֶרְצִיָּיה בכחול אינקוגניטו">
 			<p>
 				לעולם לא ניצחתי בתחרות האיות
@@ -2393,6 +2526,7 @@
 			<h5>29/10/2016 02:05</h5>
 			<h3>כל הלילה על האש</h3>
 			<img src="images/tumblr_ntjzsfwhum1u117t6o1_500.gif" alt="כל הלילה על האש">
+			<img src="images/tumblr_ntjzsfwhum1u117t6o1_500.gif" alt="כל הלילה על האש">
 			<p>
 				שעת לילה מאוחרת
 				ואת מחשבותיה הכמוסות אוצרת
@@ -2428,6 +2562,7 @@
 			<h5>03/11/2016 23:13</h5>
 			<h3>איך אפשר שלא לרצות לפסק אותך</h3>
 			<img src="images/tumblr_of7kd1cSTH1uojcg9o1_540.gif" alt="אהבה">
+			<img src="images/tumblr_of7kd1cSTH1uojcg9o1_540.gif" alt="אהבה">
 			<p>
 				איך אפשר שלא לרצות לפסק אותך
 				כשאת מטריפה אותי עם הריח שלך
@@ -2449,6 +2584,7 @@
 		<article class="article" data-category="cat2">
 			<h5>06/11/2016 15:57</h5>
 			<h3>תוססת</h3>
+			<img src="images/tumblr_oamrgov1PD1vsjcxvo1_1280.gif" alt="אהבה">
 			<img src="images/tumblr_oamrgov1PD1vsjcxvo1_1280.gif" alt="אהבה">
 			<p>
 				מתסיסה לי את העפעפיים
@@ -2492,6 +2628,7 @@
 			<h5>08/11/2016 15:13</h5>
 			<h3>זה מצחיק איך הכל נראה שונה תמיד שעה אחרי ש</h3>
 			<img src="images/tumblr_n2loxjv5XY1roxn8wo1_500.gif" alt="זה מצחיק איך הכל נראה שונה תמיד שעה אחרי ש">
+			<img src="images/tumblr_n2loxjv5XY1roxn8wo1_500.gif" alt="זה מצחיק איך הכל נראה שונה תמיד שעה אחרי ש">
 			<p>
 				את משפיעה עליי קצת לרעה
 				זה לא ממש נכון.. אבל תמיד טוב שיש מישו להאשים כשאתה כתום כמו אפרסמון סיני בסלסלת קש על המדף
@@ -2517,6 +2654,7 @@
 		<article class="article" data-category="cat1">
 			<h5>09/11/2016 17:14</h5>
 			<h3>למה את לחוצה?</h3>
+			<img src="images/tight.gif" alt="למה את לחוצה?">
 			<img src="images/tight.gif" alt="למה את לחוצה?">
 			<p>	
 				אשת הקמיקזה מחפשת תשובה, ממהרת, מהמכונית הלבנה הקטנה שלה יוצאת, לא שמה לב לזוג האוהבים הבוגדני שמתכנן מזימה, במכונית החונה ממש לידה, שתי מכוניות עומדות קרוב, מסגירות דבר מה שהולך להתרחש, גברת סוזוקי ג'מיני לא שמה לב
@@ -2545,6 +2683,7 @@
 		<article class="article" data-category="cat2">
 			<h5>15/11/2016 15:09</h5>
 			<h3>האדמה מקולקלת</h3>
+			<img src="images/tumblr_oa28nkeWeQ1vsjcxvo1_1280.gif" alt="האדמה מקולקלת">
 			<img src="images/tumblr_oa28nkeWeQ1vsjcxvo1_1280.gif" alt="האדמה מקולקלת">
 			<p>
 				הזרעים עפים ברוח הגלילית
@@ -2606,6 +2745,7 @@
 			<h5>17/11/2016 12:07</h5>
 			<h3>איך להתחיל</h3>
 			<img src="images/tumblr_mnz947gW8J1sn6ya0o1_500.gif" alt="איך להתחיל">
+			<img src="images/tumblr_mnz947gW8J1sn6ya0o1_500.gif" alt="איך להתחיל">
 			<p>
 				איך להתחיל?
 				למשש לך את השדיים
@@ -2637,6 +2777,7 @@
 			<h5>20/11/2016 00:02</h5>
 			<h3>סטנדינג אוביישן</h3>
 			<img src="images/tumblr_nidvxp1FX31txg7xho1_400.gif" alt="סטנדינג אוביישן">
+			<img src="images/tumblr_nidvxp1FX31txg7xho1_400.gif" alt="סטנדינג אוביישן">
 			<p>	
 				זה היה מהימים האלה שאתה שוכב למראשות המיטה וחושב, זה באמת קרה אתמול
 				<strong>איי סמל פוסי</strong>, הריח המשכר של גופה עדיין באפי, טעם כוס שלה על קצה לשוני
@@ -2661,6 +2802,7 @@
 				למרות שקצת אחרי סוכות, היא מעיפה לי את הסכך בגירויים שלה
 				<span></span>
 				לפתע היא מסתובבת לעברי, מציצה אל המראה ומתגרה, רוכנת קדימה, בזמן שרגליה ישרות מפסקות את רגליי, ומביאה את הלשון שלה אל הכובע שלי ואת התחת שלה מול הפנים שלי
+				לפתע היא מסתובבת לעברי, מציצה אל המראה ומתגרה, רוכנת קדימה, בזמן שרגליה ישרות מפסקות את רגליי, ומביאה את הלשון שלה אל הכובע שלי ואת התחת שלה מול הפנים שלי
 				היא עוברת עליי באיטיות ודואגת לנענע את התחת שלה בדיוק מול הפה שלי, נצמדת ומהדקת את עצמה אל שפתיי
 				לפני שהיא לוקחת אותי לטיול בפה שלה היא שולפת: "תוריד לי אותם עם השיניים שלך"
 				נושך מפה, אוחז משם, בא מהצד, מוריד אותם לאט לאט, קשה אני ולא מרוכז אך מרוגש, הזין שלי מתהדק בפה שלה, התחתון יורד לרצפה, ואני הולך להעלים את הלשון שלי בין הרגליים שלה, היא בהחלט מוצצת את כולי
@@ -2679,6 +2821,7 @@
 		<article class="article" data-category="cat1">
 			<h5>21/11/2016 18:19</h5>
 			<h3>פתחי לי את הדלת</h3>
+			<img src="images/tumblr_oev7r9HJor1rrugpso1_500.gif" alt="פתחי לי את הדלת">
 			<img src="images/tumblr_oev7r9HJor1rrugpso1_500.gif" alt="פתחי לי את הדלת">
 			<p>
 				פתחי לי את הדלת
@@ -2711,6 +2854,7 @@
 			<h5>24/11/2016 11:34</h5>
 			<h3>לשמור לך מקום לידי?</h3>
 			<img src="images/tumblr_ofyw1bScg51su83wto1_400.gif" alt="לשמור לך מקום לידי?">
+			<img src="images/tumblr_ofyw1bScg51su83wto1_400.gif" alt="לשמור לך מקום לידי?">
 			<p>
 				אני רק בודק שרשמת ביומן את האירוע שבו יפתחו הרגליים שלך בפניי
 				לא כדאי לך להפסיד חוויה מיוחדת ומגרה שכזו
@@ -2732,6 +2876,7 @@
 		<article class="article" data-category="cat2">
 			<h5>04/12/2016 02:39</h5>
 			<h3>Flawless</h3>
+			<img src="images/tumblr_o79mgu2yLR1u9111ko1_500.gif" alt="Flawless">
 			<img src="images/tumblr_o79mgu2yLR1u9111ko1_500.gif" alt="Flawless">
 			<p>
 				יו קן קול הר פלואלס
@@ -2775,6 +2920,7 @@
 		<article class="article" data-category="cat1">
 			<h5>06/12/2016 16:42</h5>
 			<h3>למה בשחור</h3>
+			<img src="images/tumblr_o305w3Jprv1u3yzgko1_400.gif" alt="למה בשחור">
 			<img src="images/tumblr_o305w3Jprv1u3yzgko1_400.gif" alt="למה בשחור">
 			<p>
 				למה בשחור אם בכלל אפשר <span class="red">אדום</span>
@@ -2829,6 +2975,7 @@
 			<h5>08/12/2016 21:55</h5>
 			<h3>11 כוכביה ★★★★★★★★★★★</h3>
 			<img src="images/tumblr_ohf5x5U8oY1qfc4xho1_1280.gif" alt="11 כוכביה">
+			<img src="images/tumblr_ohf5x5U8oY1qfc4xho1_1280.gif" alt="11 כוכביה">
 			<p>
 				יש אנשים שאתה פוגש פעם בחיים
 				אתה מרגיש מיד בר מזל
@@ -2867,6 +3014,7 @@
 				אני קורא לה בשמה והיא לא קוראת בשמי
 				מאוהב ברעיון שאהיה קרוב למי שתשלוט בעולם
 				שמח בחלקי שנחשפתי אל ליבה
+				ואני קרוב אליה לפתע
 				ואני קרוב אליה לפתע
 				כמה חשובת הן המילים ומה הן אומרות
 				מ' היא אחת שבא לך לנקטר
@@ -2913,6 +3061,7 @@
 				כמעט גרמו לתאונה בכניסה לבית הקברות
 				כשהרימה את ראשה והביטה בשערו
 				שם לב לפתע שהוא מכיר אותה ממזמן
+				שם לב לפתע שהוא מכיר אותה ממזמן
 				מהחלום שלו
 				השתהותה בזמן שסרק אותה בעיניו, גרם לו, לפלוט...
 				"בטלי את כל התוכניות שלך, נתקי את הטלפון שלך, אני הולך להיות המגן מסך שלך!"
@@ -2921,6 +3070,7 @@
 		<article class="article" data-category="cat1">
 			<h5>10/12/2016 01:43</h5>
 			<h3>איך שלא אסובב את זה</h3>
+			<img src="images/tumblr_nzdiy2gWUI1tmgkifo1_500.gif" alt="איך שלא אסובב את זה">
 			<img src="images/tumblr_nzdiy2gWUI1tmgkifo1_500.gif" alt="איך שלא אסובב את זה">
 			<p>
 				התחת שלה מצטלם נפלא מבעד למראה הגדולה בחדר האמבט כשהיא נמצדת אליי בחיוךהשובע לב שלה
@@ -2957,6 +3107,7 @@
 		<article class="article" data-category="cat1">
 			<h5>11/12/2016 02:30</h5>
 			<h3>קיס מי</h3>
+			<img src="images/kiss.webp" alt="קיס מי">
 			<img src="images/kiss.webp" alt="קיס מי">
 			<p>
 				הרגע הזה שבו אתה עובר עם הלשון שלך על העור שלי
@@ -3001,6 +3152,7 @@
 			<h5>12/12/2016 23:42</h5>
 			<h3>היא הקשת בענן</h3>
 			<img src="images/tumblr_o9lxxk8rwb1ravns6o1_500.gif" alt="היא הקשת בענן">
+			<img src="images/tumblr_o9lxxk8rwb1ravns6o1_500.gif" alt="היא הקשת בענן">
 			<p>
 				היא הקשת בענן
 				והיא רוצה שאגע בה שם
@@ -3020,6 +3172,7 @@
 		<article class="article" data-category="cat1">
 			<h5>2016 15:53</h5>
 			<h3>איך את נוהגת?</h3>
+			<img src="images/tumblr_nuf9p9PWRs1qzhvd4o1_400.gif" alt="איך את נוהגת?">
 			<img src="images/tumblr_nuf9p9PWRs1qzhvd4o1_400.gif" alt="איך את נוהגת?">
 			<p>
 				להחזיק את היד שלך בזמן שאת...
@@ -3055,6 +3208,7 @@
 		<article class="article" data-category="cat2">
 			<h5>19/12/2016 18:03</h5>
 			<h3>שומעים אותי?</h3>
+			<img src="images/tumblr_ogx1w7a45y1qaiyl9o1_500.gif" alt="שומעים אותי?">
 			<img src="images/tumblr_ogx1w7a45y1qaiyl9o1_500.gif" alt="שומעים אותי?">
 			<p>
 				<strong>שומעים אותי?</strong>
@@ -3096,6 +3250,7 @@
 		<article class="article" data-category="cat1">
 			<h5>25/12/2016 11:20</h5>
 			<h3>אבא שלה זגג</h3>
+			<img src="images/tumblr_nawczqjKdo1s77jnso1_400.gif" alt="אבא שלה זגג">
 			<img src="images/tumblr_nawczqjKdo1s77jnso1_400.gif" alt="אבא שלה זגג">
 			<p>
 				אבא שלה זגג,
@@ -3140,6 +3295,7 @@
 			<h5>26/12/2016 12:17</h5>
 			<h3>ואולי היא נעלמה</h3>
 			<img src="images/tumblr_ohi8ljRtUR1tinf1go1_500.gif" alt="ואולי היא נעלמה">
+			<img src="images/tumblr_ohi8ljRtUR1tinf1go1_500.gif" alt="ואולי היא נעלמה">
 			<p>
 				ואולי היא סתם צריכה הפסקה
 				רגליים משלבת, ידיים מניפה באוויר כמרקדת
@@ -3175,9 +3331,11 @@
 			<h5>28/12/2016 16:40</h5>
 			<h3>את מסתירה לי את הים</h3>
 			<img src="images/tumblr_mbyfkpfIj31qd4q01o1_500.gif" alt="את מסתירה לי את הים">
+			<img src="images/tumblr_mbyfkpfIj31qd4q01o1_500.gif" alt="את מסתירה לי את הים">
 			<p>
 				את מסתירה לי את הים עם השדיים שלך
 				לא שזופים (כעת), יפים, את עיגולי העיניים שלי מהפנטים
+				במיוחד כשמתבונן איך הפיטמות שלך מתקשות לפתע
 				במיוחד כשמתבונן איך הפיטמות שלך מתקשות לפתע
 				אל תזוזי מהפריים, תני לי בקריצות קטנות אותך לצלם ולשמר בזכרוני
 				רוצה לקפוץ שניה על זרועותיי?
@@ -3207,6 +3365,7 @@
 		<article class="article" data-category="cat1">
 			<h5>29/12/2016 17:19</h5>
 			<h3>רכבת אחרונה לפני שנגמרת השנה</h3>
+			<img src="images/tumblr_oiot178BSi1rfztp4o1_500.gif" alt="רכבת אחרונה לפני שנגמרת השנה">
 			<img src="images/tumblr_oiot178BSi1rfztp4o1_500.gif" alt="רכבת אחרונה לפני שנגמרת השנה">
 			<p>
 				מפזרת את השיער השחור הארוך, החלק שלה, ישר אחרי החפיפה
@@ -3241,6 +3400,7 @@
 		<article class="article" data-category="cat1">
 			<h5>31/12/2016 15:26</h5>
 			<h3>אוקטבה בתדירות גבוהה</h3>
+			<img src="images/tumblr_mveh2iEJ7E1qm5fi4o1_400.gif" alt="אוקטבה בתדירות גבוהה">
 			<img src="images/tumblr_mveh2iEJ7E1qm5fi4o1_400.gif" alt="אוקטבה בתדירות גבוהה">
 			<p>	
 				רגליים עדינות וקרירות, אצבעות קטנות עוטפות אותי, מתחת לביצים החמימות
@@ -3284,6 +3444,7 @@
 			<h5>15/01/2017 15:11</h5>
 			<h3>לאן תקחי אותי היום</h3>
 			<img src="images/tumblr_ohzlr38zyH1u5vp7wo1_500.gif" alt="לאן תקחי אותי היום">
+			<img src="images/tumblr_ohzlr38zyH1u5vp7wo1_500.gif" alt="לאן תקחי אותי היום">
 			<p>
 				לאן תקחי אותי היום
 				אחרי שנדליק את האור
@@ -3312,6 +3473,7 @@
 			<h5>04/02/2017 01:50</h5>
 			<h3>פתאום</h3>
 			<img src="images/tumblr_nphvd0yIQf1tkxbkso1_400.gif" alt="פתאום">
+			<img src="images/tumblr_nphvd0yIQf1tkxbkso1_400.gif" alt="פתאום">
 			<p>
 				פתאום היא עושה לי עיניים
 				משחררת את גופה ברגע אחד
@@ -3338,6 +3500,7 @@
 			<h5>05/02/2017 00:58</h5>
 			<h3>מים</h3>
 			<img src="images/tumblr_mw26pzIIzD1qj73e2o1_500.gif" alt="מים">
+			<img src="images/tumblr_mw26pzIIzD1qj73e2o1_500.gif" alt="מים">
 			<p>
 				מה אם המחשבות שלנו יהפכו למציאות אבל בדיוק
 				מה אם הפער בין הדמיון למציאות יהיה קטון ונראה כמו עפיפון
@@ -3363,6 +3526,7 @@
 		<article class="article" data-category="cat1">
 			<h5>08/02/2017 12:10</h5>
 			<h3>טייץ</h3>
+			<img src="images/tumblr_o3hoqw7F3s1v7o7pro1_500.gif" alt="טייץ">
 			<img src="images/tumblr_o3hoqw7F3s1v7o7pro1_500.gif" alt="טייץ">
 			<p>
 				מה יהיה עם הטייץ השחור הזה
@@ -3418,6 +3582,7 @@
 			<h5>12/02/2017 00:04</h5>
 			<h3>משובצת</h3>
 			<img src="images/tumblr_nb8vghT9Wd1tjk6aao1_500.gif" alt="משובצת">
+			<img src="images/tumblr_nb8vghT9Wd1tjk6aao1_500.gif" alt="משובצת">
 			<p>
 				מצוידת בשמלה קצרה ומשובצת, החזיה השחורה מבצבצת בסמוך לכתפיה, מחשוף נדיב מפאר את מרפסת השמש שלה השזופה, חיוך של תן לי אות ארוכה בפה ואני אתן לך חטא, הרגליים החלקות שלה מחזירות אור בוהק, שיער שחור וארוך מאוד (שבוודאי יעשה בו שימוש בהמשך), גולש על גבה, ממש ג'סיקה ראביט אבל משלנו, מבט שובב בעיניה, שרירים מתוחים וידיים ארוכות, ותחת, אח איזה תחת! תחת שמטשטש לך חוט המחשבה ומסיט אותה/אותו.
 				<span></span>
@@ -3431,6 +3596,7 @@
 		<article class="article" data-category="cat1">
 			<h5>14/02/2017 00:05</h5>
 			<h3>למה את לא מחייכת בקלות</h3>
+			<img src="images/tumblr_ofao6vN9nd1un04vuo1_500.gif" alt="למה את לא מחייכת בקלות">
 			<img src="images/tumblr_ofao6vN9nd1un04vuo1_500.gif" alt="למה את לא מחייכת בקלות">
 			<p>
 				נראה שהיא חושבת שהיא לא נחשקת
@@ -3493,6 +3659,7 @@
 			<h5>16/02/2017 15:34</h5>
 			<h3>איך זה קרה</h3>
 			<img src="images/tumblr_ojve1fJpcY1tjz72bo1_400.gif" alt="איך זה קרה">
+			<img src="images/tumblr_ojve1fJpcY1tjz72bo1_400.gif" alt="איך זה קרה">
 			<p>
 				איך זה קרה
 				שאת מופיעה כאילו זרקתי מטבע של זהב למזרקה
@@ -3531,6 +3698,7 @@
 			<h5>21/02/2017 14:21</h5>
 			<h3>ספייס מונקי</h3>
 			<img src="images/tumblr_okkgdqjOBJ1v2useeo1_r1_1280.gif" alt="ספייס מונקי">
+			<img src="images/tumblr_okkgdqjOBJ1v2useeo1_r1_1280.gif" alt="ספייס מונקי">
 			<p>
 				אז החלטת ללבוש חצאית אדומה צמודה
 				נעליים שחורות על עקבים דקים
@@ -3556,6 +3724,7 @@
 		<article class="article" data-category="cat1">
 			<h5>22/02/2017 23:53</h5>
 			<h3>קלשון התשוקה</h3>
+			<img src="images//tumblr_ofyhomYjRQ1shn04do1_500.gif" alt="קלשון התשוקה">
 			<img src="images//tumblr_ofyhomYjRQ1shn04do1_500.gif" alt="קלשון התשוקה">
 			<p>	
 				מחזיק בידי את צרור המפתחות ומניח אותם על שידת העץ הגבוהה
@@ -3601,6 +3770,7 @@
 			<h5>10/03/2017 01:28</h5>
 			<h3>רגע לפני</h3>
 			<img src="images/tumblr_of2ranSrhP1uvues3o1_500.gif" alt="רגע לפני">
+			<img src="images/tumblr_of2ranSrhP1uvues3o1_500.gif" alt="רגע לפני">
 			<p>		
 				רגע לפני שמניח את הראש על הכרית הרכה, כמו התחת הקטן שלך ואחלום עלייך חרישית
 				סטאג'רית סקרנית בחלוק ארוך ירוק, פתוח קצת, שובב
@@ -3634,6 +3804,7 @@
 		<article class="article" data-category="cat1">
 			<h5>12/03/2017 01:28</h5>
 			<h3>פרגולה</h3>
+			<img src="images/tumblr_nfrfx0rz321u0ls4jo3_r1_250.gif" alt="פרגולה">
 			<img src="images/tumblr_nfrfx0rz321u0ls4jo3_r1_250.gif" alt="פרגולה">
 			<p>
 				המפתח מחליק במנעול בזמן שהיא פורצת הביתה כמו רוח סערה
@@ -3688,6 +3859,7 @@
 			<h5>18/03/2017 02:11</h5>
 			<h3>רוקדת בחושך</h3>
 			<img src="images/tumblr_mgxvxtAPdO1s0dshxo1_500.gif" alt="רוקדת בחושך">
+			<img src="images/tumblr_mgxvxtAPdO1s0dshxo1_500.gif" alt="רוקדת בחושך">
 			<p>	
 				היא כספיון שנדלק במהירות האור
 				לפתע היא נכבית כמו סוללה שהתרוקנה
@@ -3714,6 +3886,7 @@
 		<article class="article" data-category="cat1">
 			<h5>05/04/2017 23:46</h5>
 			<h3>איך אפשר לתאר</h3>
+			<img src="images/tumblr_olly7iHasJ1v21qz0o1_500.gif" alt="איך אפשר לתאר">
 			<img src="images/tumblr_olly7iHasJ1v21qz0o1_500.gif" alt="איך אפשר לתאר">
 			<p>
 				איך אפשר לתאר את השיער שלה נשפך עלי
@@ -3771,6 +3944,7 @@
 			<h5>05/2017 23:56</h5>
 			<h3>אולי מחר</h3>
 			<img src="images/tumblr_nk5grex0Kt1s1r8c2o1_500.gif" alt="אולי מחר">
+			<img src="images/tumblr_nk5grex0Kt1s1r8c2o1_500.gif" alt="אולי מחר">
 			<p>	
 				היא פושטת את המגבת הכחולה וזורקת אותה על המיטה, מתיזה על פרצופי מעט מהשיער הרטוב שלה, מחככת את רגלה סביבי
 				הריח שלה מתפשט בכל החדר המוצל באור חיוור, מוזיקה עולה ומשתלטת על צעדיה, הפזמון הדביק והממכר i am in love with your body גורם לתחת שלה להתנענע כרקדנית חושנית לצלילי הזמר הג'ינגי
@@ -3791,6 +3965,7 @@
 		<article class="article" data-category="cat1">
 			<h5>06/08/2017 12:02</h5>
 			<h3>אני נכנע</h3>
+			<img src="images/that_obscure_object_of_desire.gif" alt="אני נכנע">
 			<img src="images/that_obscure_object_of_desire.gif" alt="אני נכנע">
 			<p>
 				לך
@@ -3813,6 +3988,7 @@
 			<h5>29/08/2017 23:30</h5>
 			<h3>פעפוע</h3>
 			<img src="images/tumblr_o3y7umTh3u1v7o7pro1_500.gif" alt="פעפוע">
+			<img src="images/tumblr_o3y7umTh3u1v7o7pro1_500.gif" alt="פעפוע">
 			<p>
 				כשאת קמה בבוקר וממהרת
 				לרוץ אל המסך
@@ -3830,6 +4006,7 @@
 		<article class="article" data-category="cat1">
 			<h5>11/09/2017 00:57</h5>
 			<h3>לראות</h3>
+			<img src="images/tumblr_nathkvrQV41txhtfao1_500.gif" alt="לראות">
 			<img src="images/tumblr_nathkvrQV41txhtfao1_500.gif" alt="לראות">
 			<p>		
 				אותה עוצמת את עיניה לשניה
@@ -3866,6 +4043,7 @@
 			<h5>30/09/2017 23:20</h5>
 			<h3>תרימי את החולצה</h3>
 			<img src="images/tumblr_ncmwtiW1wU1sus2x2o1_500.gif" alt="תרימי את החולצה">
+			<img src="images/tumblr_ncmwtiW1wU1sus2x2o1_500.gif" alt="תרימי את החולצה">
 			<p>	
 				תרימי את החולצה
 				תראי את השדיים
@@ -3890,6 +4068,7 @@
 		<article class="article" data-category="cat1">
 			<h5>01/10/2017 00:21</h5>
 			<h3>עוד אחת לפני שאת נרדמת</h3>
+			<img src="images/tumblr_m863zoMOs61qkv4ajo1_500.gif" alt="עוד אחת לפני שאת נרדמת">
 			<img src="images/tumblr_m863zoMOs61qkv4ajo1_500.gif" alt="עוד אחת לפני שאת נרדמת">
 			<p>		
 				שעת לילה חושנית עוברת בין רגלייך
@@ -3925,6 +4104,7 @@
 		<article class="article" data-category="cat1">
 			<h5>21/10/2017 00:39</h5>
 			<h3>הקיץ כמעט נגמר אז למה צריך עונת מעבר</h3>
+			<img src="images/tumblr_o65kixjep11tbh1dho1_1280.gif" alt="הקיץ כמעט נגמר אז למה צריך עונת מעבר">
 			<img src="images/tumblr_o65kixjep11tbh1dho1_1280.gif" alt="הקיץ כמעט נגמר אז למה צריך עונת מעבר">
 			<p>		
 				רק בשביל שהיא תתישב על הרצפה
@@ -3962,6 +4142,7 @@
 		<article class="article" data-category="cat1">
 			<h5>27/10/2017 23:52</h5>
 			<h3>רצה הגורל</h3>
+			<img src="images/tumblr_n7zk4iOKRm1s1bhx2o1_500.gif" alt="רצה הגורל">
 			<img src="images/tumblr_n7zk4iOKRm1s1bhx2o1_500.gif" alt="רצה הגורל">
 			<p>
 				והיא עצרה בצידי הדרך
@@ -4002,6 +4183,7 @@
 			<h5>04/11/2017 00:58</h5>
 			<h3>מתנה</h3>
 			<img src="images/matana.webp" alt="מתנה">
+			<img src="images/matana.webp" alt="מתנה">
 			<p>
 				מתנה
 				<strong>היא תקבל</strong>
@@ -4027,6 +4209,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Lost in Amsterdam</h3>
 			<img src="images/lost.webp" alt="Lost in Amsterdam">
+			<img src="images/lost.webp" alt="Lost in Amsterdam">
 			<p>
 				The lights were low, the music was great, the atmosphere was magical and my hands were warm, I set at the bar, drinking a cold cold beer, when a black hair guy seat next to me, he said: “nice to meet you I'm Jim, what is your beautiful name?” I said: “Layla, and smiled :)”
 				<span></span>
@@ -4051,6 +4234,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>I want you!</h3>
 			<img src="images/u.webp" alt="I want you!">
+			<img src="images/u.webp" alt="I want you!">
 			<p>
 				I met her by surprise, I didn’t realize, she can be so hawt, we had a small talk by the bar, laughing, chatting, having a great time, suddenly she put her hand on my thigh and it felt warm, I was smiling and touched her shoulder, in a nice way, like she was my best friend at the moment.
 				<span></span>
@@ -4071,6 +4255,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Tie my hands</h3>
+			<img src="images/tie.webp" alt="Tie my hands">
 			<img src="images/tie.webp" alt="Tie my hands">
 			<p>
 				I always had that fantasy to be tied up, not just blind as in the 3rd date… but actually to be tied up and be a toy of someone who will want to own my body and make me know it in a better way.
@@ -4103,12 +4288,14 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Follow Me</h3>
 			<img src="images/follow.webp" alt="Follow Me">
+			<img src="images/follow.webp" alt="Follow Me">
 			<p>
 				Follow Me, tenderly, come and play with me, take me, give it to me, show me your best move, get into the groove  …and leave your mark on me.
 			</p>
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Are you with me?</h3>
+			<img src="images/are.webp" alt="Are you with me?">
 			<img src="images/are.webp" alt="Are you with me?">
 			<p>
 				I want to feel you inside me, I wish I will get down to you, I will take off my bra, tell me what to do, push with your tongue more, add 1000000 kisses from neck and below, take me to the bright blue light, fill me up tonight, bite me where you can, make it unforgettable, baby, here I am.
@@ -4118,6 +4305,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Playing time</h3>
+			<img src="images/playing.gif" alt="Playing time">
 			<img src="images/playing.gif" alt="Playing time">
 			<p>
 				He unleashes my hands from my back and tie me up in front, my black dress with nothing underneath made me feel horny, “lean down, raise your ass up high”, he command, he raised my dress up, towards my neck and cover my head with it, “let's play”, he whispered in my ear, while start to kiss me all over, from my neck, down slow to my shoulders, upper back, went with his tongue on my backbone real slow, I could feel his breaths on my lower back, wishing he will fuck my ass with his long tongue.
@@ -4135,6 +4323,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Wake me up</h3>
+			<img src="images/wake.webp" alt="Wake me up">
 			<img src="images/wake.webp" alt="Wake me up">
 			<p>
 				With your tongue in my pussy
@@ -4183,6 +4372,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Doubly Divine</h3>
 			<img src="images/doble.webp" alt="Doubly Divine">
+			<img src="images/doble.webp" alt="Doubly Divine">
 			<p>
 				Between the past and future beyond
 				I can find myself wondering and roam
@@ -4223,12 +4413,14 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Please satisfy me</h3>
 			<img src="images/psm.webp" alt="Please satisfy me">
+			<img src="images/psm.webp" alt="Please satisfy me">
 			<p>
 				With your tongue, make me shiver and I will be your tonight, I can promise you that!
 			</p>
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>I shiver with antici…..pation</h3>
+			<img src="images/shiver.webp" alt="I shiver with antici…..pation">
 			<img src="images/shiver.webp" alt="I shiver with antici…..pation">
 			<p>
 				When i counting the minutes when you come home, lay your hands on me, make me pure, make me dirty, follow my lead, make me crazy, put your hands on ass, rub my tits with your mouth, give me the oral pleasure I need, make cum until I bleed, strip me down, make me shiver and moan with antici…..pation, circle around my secret garden, amuse me like a clown, make me love you, i will follow you back, as long as you’ll be mine, I promise to shake my ass and tease with my new lingerie.
@@ -4241,6 +4433,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Fuck me by your touch</h3>
 			<img src="images/touch.webp" alt="Fuck me by your touch">
+			<img src="images/touch.webp" alt="Fuck me by your touch">
 			<p>
 				Make me want you more, heat me by your glance, your smell I will adore, as much as I want you, I want you more!
 				<span></span>
@@ -4249,6 +4442,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>I need you inside me</h3>
+			<img src="images/inside.webp" alt="I need you inside me">
 			<img src="images/inside.webp" alt="I need you inside me">
 			<p>
 				I need you now, I want you to fuck me, fuck me hard, my body is waiting just for you, my tits are teased, make my nipples hard, you know how to, when I come home after work, I want to relax with the help of your cock.
@@ -4268,6 +4462,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Foreplay</h3>
+			<img src="images/4play.webp" alt="Foreplay">
 			<img src="images/4play.webp" alt="Foreplay">
 			<p>
 				I came early the other day, was after a shower, feeling groovy,
@@ -4291,6 +4486,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Fetish Fun</h3>
+			<img src="images/fun.webp" alt="Fetish Fun">
 			<img src="images/fun.webp" alt="Fetish Fun">
 			<p>
 				My friend asked me to replace her in a fetish fun session, I found myself following her into her bathroom, she opened her closet and said:“ welcome to my secret leather garden showplace”, slave Harness, black long dido’s, latex bondage suit, pony tales, bedspread, under Bed bondage straps, paddle slut, sling with cuffs and all you can imagine and much more, I was excited and left I am about to choose my own gun for my assassin job.
@@ -4316,6 +4512,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Magic Stick</h3>
 			<img src="images/magic.webp" alt="Magic Stick">
+			<img src="images/magic.webp" alt="Magic Stick">
 			<p>
 				My legs felt tickling by his hardness, while I was sleepy, that felt good on my morning fingers, holding my fit gently, rubbing his cock, between my toes, spreading my legs in a diamond shape, closing them to the hard cock, suddenly, he pulled a bamboo stick from behind that a shaped, sharp carrot was attached to it.
 				<span></span>
@@ -4330,6 +4527,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Drink & Drive</h3>
+			<img src="images/drive.webp" alt="Drink & Drive">
 			<img src="images/drive.webp" alt="Drink & Drive">
 			<p>
 				He’s the driver of the red sports car, the weather is perfect, outside is getting dark, as he pinches my nipple on top of my purple T, I reach out my hand, to touch, to lake it out, pulling his pants, the snail is long and happy to feel the air outside, the touch of my sliding fingers on top of him.
@@ -4347,6 +4545,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Tonight, I'm fucking you!</h3>
 			<img src="images/2night.webp" alt="Tonight, I'm fucking you!">
+			<img src="images/2night.webp" alt="Tonight, I'm fucking you!">
 			<p>
 				You’re a slut, 
 				You're a douchebag,
@@ -4361,12 +4560,14 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Every night</h3>
 			<img src="images/every.webp" alt="Every night">
+			<img src="images/every.webp" alt="Every night">
 			<p>
 				Every night sneaks into my bed, make my hotspot blazing, in other words, I should say, muhfucka, or I should say… there are no words.
 			</p>
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h5>Do me!</h5>
+			<img src="images/do.gif" alt="Do me">
 			<img src="images/do.gif" alt="Do me">
 			<p>
 				I have this secxy friend, I call him sunny, he has this shaped ass when I dream about him I almost want to scream from sleeping: “Do me, Sunny”.
@@ -4391,6 +4592,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Sunny needs a treat</h3>
+			<img src="images/sunny.webp" alt="Sunny needs a treat">
 			<img src="images/sunny.webp" alt="Sunny needs a treat">
 			<p>
 				Sunny needs a treat
@@ -4439,6 +4641,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Let me take you</h3>
 			<img src="images/let.webp" alt="Let me take you">
+			<img src="images/let.webp" alt="Let me take you">
 			<p>
 				In my mouth 'cause I want to suck your brain out, till the walls collapsed and you will cum with a bang boom in my mouth, will swallow you down.
 			</p>
@@ -4446,11 +4649,13 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Take my breath away</h3>
 			<img src="images/take.webp" alt="Take my breath away">
+			<img src="images/take.webp" alt="Take my breath away">
 			<p>
 				I am clean and teased, after the long shower, fuck me like no other, take my breath away and make me faint, common make my day!!
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>I’m in Love ❣</h3>
+			<img src="images/im.webp" alt="I’m in Love">
 			<img src="images/im.webp" alt="I’m in Love">
 			<p>
 				With your dick ★
@@ -4458,6 +4663,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Please Me</h3>
+			<img src="images/plz.webp" alt="Please Me">
 			<img src="images/plz.webp" alt="Please Me">
 			<p>
 				<span></span>
@@ -4545,6 +4751,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Fuck me with your best move</h3>
 			<img src="images/best.webp" alt="Fuck me with your best move">
+			<img src="images/best.webp" alt="Fuck me with your best move">
 			<p>
 				It was a cool evening, when the wind carries her waves of multi love, into my room, I put on my sexy shoes and went for a walk on the wild side, the streets were kind of busy, crowded people seeking for love in the main center, I seat down an lay my eyes on a handsome guy, black hair,
 				<span></span>
@@ -4569,11 +4776,14 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>I like it</h3>
 			<img src="images/as.webp" alt="I like it">
+			<img src="images/as.webp" alt="I like it">
 			<p>
 				…When you teach my ass how to stand up high, on my knees, coming inside me deeply, penetrated my ass rapidly, I like it, fuck me harder teach my ass what it feels like, wowwwwwwwwwwwwwww, dam I like it!
 			</p>
 		</article>
 		<article class="article ltr" data-category="cat3">
+			<h3></h3>
+			<img src="images/give.webp" alt="Give it to me">
 			<h3></h3>
 			<img src="images/give.webp" alt="Give it to me">
 			<p>
@@ -4591,6 +4801,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Go Deeper</h3>
 			<img src="images/go.webp" alt="Go Deeper">
+			<img src="images/go.webp" alt="Go Deeper">
 			<p>
 				Something happening inside of me and I liked it so much.
 				<span></span>
@@ -4599,6 +4810,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>This bitch needs excitement</h3>
+			<img src="images/this.webp" alt="This bitch needs excitement">
 			<img src="images/this.webp" alt="This bitch needs excitement">
 			<p>
 				I was thinking to myself as she started to moan in my ears, how much she feels lonely lately…
@@ -4621,6 +4833,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>Control ME</h3>
 			<img src="images/control.gif" alt="Control ME">
+			<img src="images/control.gif" alt="Control ME">
 			<p>
 				She wants to control me, “go for it!”, "I am all yours", “you can do with me whatever you want”, I whispered while I was diving into her deep eyes.
 				<span></span>
@@ -4642,6 +4855,7 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>You love that ass</h3>
 			<img src="images/you.webp" alt="You love that ass">
+			<img src="images/you.webp" alt="You love that ass">
 			<p>
 				swear you do, you love that ass, only you know how to shake it with your touch, stick it in hard now, fuck my deeply, faster than a thunder light, I am so horny in your arms, excited to be fucked like an animal, I need it badly.
 				<span></span>
@@ -4653,6 +4867,7 @@
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>I am bored use your tongue</h3>
+			<img src="images/bored.webp" alt="I am bored use your tongue">
 			<img src="images/bored.webp" alt="I am bored use your tongue">
 			<p>
 				Go on your knees
@@ -4680,12 +4895,14 @@
 		<article class="article ltr" data-category="cat3">
 			<h3>When will you fuck me in the ass on the new couch?</h3>
 			<img src="images/new.webp" alt="When will you fuck me in the ass on the new couch?">
+			<img src="images/new.webp" alt="When will you fuck me in the ass on the new couch?">
 			<p>
 				Or it's too much to ask…
 			</p>
 		</article>
 		<article class="article ltr" data-category="cat3">
 			<h3>Cum on my TITS</h3>
+			<img src="images/ti.webp" alt="Cum on my TITS">
 			<img src="images/ti.webp" alt="Cum on my TITS">
 			<p>
 				I like it when you are naughty and how you like to fuck my tits, make them bounce, pound them with your hardness, embrace them fast, do it now, please. Cum on my tits right now sprays some into my mouth!
@@ -4694,6 +4911,7 @@
 		<article class="article" data-category="cat2">
 			<h5>04/02/2025 20:47</h5>
 			<h3>אני מחשיב את עצמי כוכב 💫</h3>
+			<img src="images/star.webp" alt="אני מחשיב את עצמי כוכב">
 			<img src="images/star.webp" alt="אני מחשיב את עצמי כוכב">
 			<p>
 				אני מחשיב את עצמי כוכב 💫
@@ -4725,6 +4943,7 @@
 			<h5>01/03/2025 11:47</h5>
 			<h3>גם כשעיני פקוחות אני רואה יותר מדי</h3>
 			<img src="images/gam.gif" alt="גם כשעיני פקוחות אני רואה יותר מדי">
+			<img src="images/gam.gif" alt="גם כשעיני פקוחות אני רואה יותר מדי">
 			<p>
 				כי
 				מה הן המילים אם לא שתיקה
@@ -4755,6 +4974,7 @@
 		<article class="article" data-category="cat2">
 			<h5>01/03/2025 12:00</h5>
 			<h3>רוצה להיות בריא וחזק</h3>
+			<img src="images/want.webp" alt="רוצה להיות בריא וחזק">
 			<img src="images/want.webp" alt="רוצה להיות בריא וחזק">
 			<p>
 				תהיה עסוק ותחיה בלי מחשבה
@@ -4798,6 +5018,7 @@
 			<h5>01/03/2025 12:14</h5>
 			<h3>הוא נולד באיטליז במזל לא חשוב</h3>
 			<img src="images/itliz.webp" alt="הוא נולד באיטליז במזל לא חשוב">
+			<img src="images/itliz.webp" alt="הוא נולד באיטליז במזל לא חשוב">
 			<p>
 				וחלם לנגן, לצאת מהכלוב
 				ללכת לבית של החבר שלו
@@ -4831,6 +5052,7 @@
 			<h5>03/03/2025 20:02</h5>
 			<h3>לא מוצא את עצמי</h3>
 			<img src="images/cantfind.webp" alt="לא מוצא את עצמי">
+			<img src="images/cantfind.webp" alt="לא מוצא את עצמי">
 			<p>
 				מחפש לא מוצא
 				מי בכלל צריך את זה
@@ -4858,6 +5080,7 @@
 		<article class="article" data-category="cat2">
 			<h5>03/03/2025 20:02</h5>
 			<h3>עומק לא נמצא</h3>
+			<img src="images/omek.gif" alt="עומק לא נמצא">
 			<img src="images/omek.gif" alt="עומק לא נמצא">
 			<p>
 				עומק לא נמצא
@@ -4903,6 +5126,7 @@
 			<h5>17/03/2025 20:51</h5>
 			<h3>אין לי מה לתת לה</h3>
 			<img src="images/einly.webp" alt="אין לי מה לתת לה">
+			<img src="images/einly.webp" alt="אין לי מה לתת לה">
 			<p>
 				אין לה מה לתת לי
 				הכל נראה לי ברור
@@ -4930,6 +5154,7 @@
 			<h5>17/03/2025 21:01</h5>
 			<h3>הכל אני מבינה</h3>
 			<img src="images/enrgy.webp" alt="הכל אני מבינה">
+			<img src="images/enrgy.webp" alt="הכל אני מבינה">
 			<p>
 				יש לי בעיניים נשמה
 				זה תמיד היה ברור לי מאז שאני קטנה
@@ -4948,6 +5173,7 @@
 		<article class="article" data-category="cat2">
 			<h5>25/03/2025 21:09</h5>
 			<h3>מתחילים מחדש. למה לא? מה זה רע?</h3>
+			<img src="images/mat.gif" alt="מתחילים מחדש. למה לא? מה זה רע?">
 			<img src="images/mat.gif" alt="מתחילים מחדש. למה לא? מה זה רע?">
 			<p>
 				גם הזמן הזה לפעמים מתבלבל בספירה
@@ -4986,6 +5212,7 @@
 		<article class="article" data-category="cat2">
 			<h5>25/03/2025 21:21</h5>
 			<h3>תגיד לי איך לתפוס ברשת</h3>
+			<img src="images/tagid.gif" alt="תגיד לי איך לתפוס ברשת">
 			<img src="images/tagid.gif" alt="תגיד לי איך לתפוס ברשת">
 			<p>
 				את כל מה שאין בו היגיון
@@ -5034,6 +5261,7 @@
 			<h5>25/03/2025 21:30</h5>
 			<h3>לאן הולכים פתאום כולם</h3>
 			<img src="images/wtg.webp" alt="לאן הולכים פתאום כולם">
+			<img src="images/wtg.webp" alt="לאן הולכים פתאום כולם">
 			<p>
 				הכל נסוג ונעלם
 				רק המילים צפות כולן...
@@ -5073,6 +5301,7 @@
 		<article class="article" data-category="cat2">
 			<h5>27/03/2025 22:07</h5>
 			<h3>כלב נובח</h3>
+			<img src="images/dogy.webp" alt="כלב נובח">
 			<img src="images/dogy.webp" alt="כלב נובח">
 			<p>
 				פוחד לישון
@@ -5125,6 +5354,7 @@
 			<h5>07/04/2025 21:27</h5>
 			<h3>חצי נחמה</h3>
 			<img src="images/hezi.webp" alt="חצי נחמה">
+			<img src="images/hezi.webp" alt="חצי נחמה">
 			<p>
 				רוב הזמן לבד
 				רבע בחירה
@@ -5168,6 +5398,7 @@
 			<h5>07/04/2025 21:37</h5>
 			<h3>עוד יום</h3>
 			<img src="images/od.gif" alt="עוד יום">
+			<img src="images/od.gif" alt="עוד יום">
 			<p>
 				לגעת ברוח
 				זה לא בטוח
@@ -5199,6 +5430,7 @@
 			<h5>15/04/2025 21:21</h5>
 			<h3>האהבה מתה</h3>
 			<img src="images/lovedead.webp" alt="האהבה מתה">
+			<img src="images/lovedead.webp" alt="האהבה מתה">
 			<p>
 				מה שניסינו לא הלך
 				בסוף היא היתה חיוורת כל כך
@@ -5224,6 +5456,7 @@
 		<article class="article" data-category="cat2">
 			<h5>15/04/2025 21:30</h5>
 			<h3>---★ שיחות עם עצמי</h3>
+			<img src="images/meme.gif" alt="שיחות עם עצמי">
 			<img src="images/meme.gif" alt="שיחות עם עצמי">
 			<p>
 				ממה אתה בורח?
@@ -5283,6 +5516,7 @@
 			<h5>05/05/2025 20:02</h5>
 			<h3>שום דבר לא ידוע</h3>
 			<img src="images/shum.webp" alt="שום דבר לא ידוע">
+			<img src="images/shum.webp" alt="שום דבר לא ידוע">
 			<p>
 				שום דבר לא ידוע
 				לא שנה, לא שבוע
@@ -5316,6 +5550,7 @@
 			<h5>05/05/2025 20:06</h5>
 			<h3>שבור זה גם חותך</h3>
 			<img src="images/savur.gif" alt="שבור זה גם חותך">
+			<img src="images/savur.gif" alt="שבור זה גם חותך">
 			<p>
 				zה לא נהייה יותר קל
 				זה רק הולך ומסתכסך
@@ -5341,6 +5576,7 @@
 		<article class="article ltr" data-category="cat2">
 			<h5>10/05/2025 13:34</h5>
 			<h3>Best friend with benefits</h3>
+			<img src="images/bswb.webp" alt="Best friend with benefits">
 			<img src="images/bswb.webp" alt="Best friend with benefits">
 			<p>
 				[Verse 1]
@@ -5397,6 +5633,7 @@
 			<h5>10/05/2025 13:34</h5>
 			<h3>שבועות</h3>
 			<img src="images/savuot.webp" alt="שבועות">
+			<img src="images/savuot.webp" alt="שבועות">
 			<p>
 				אוכל סרטים
 				אוכל גבינות
@@ -5419,6 +5656,7 @@
 		<article class="article ltr" data-category="cat2">
 			<h5>10/05/2025 13:34</h5>
 			<h3>summer</h3>
+			<img src="images/summer.webp" alt="summer">
 			<img src="images/summer.webp" alt="summer">
 			<p>
 				<span></span>
@@ -5456,6 +5694,7 @@
 			<h5>12/05/2025 21:01</h5>
 			<h3>Morning Dream Wire</h3>
 			<img src="images/mdw.webp" alt="Morning Dream Wire">
+			<img src="images/mdw.webp" alt="Morning Dream Wire">
 			<p>
 				morning rising covering my eyes
 				i had a dream about you and i loved it a lot
@@ -5484,6 +5723,7 @@
 		<article class="article ltr" data-category="cat2">
 			<h5>14/05/2025 19:48</h5>
 			<h3>Better, Stronger, Smarter</h3>
+			<img src="images/bss.webp" alt="Better, Stronger, Smarter">
 			<img src="images/bss.webp" alt="Better, Stronger, Smarter">
 			<p>
 				Tell me how to catch everything 
@@ -5543,6 +5783,7 @@
 			<h5>17/05/2025 03:47</h5>
 			<h3>Once</h3>
 			<img src="images/once.webp" alt="Once">
+			<img src="images/once.webp" alt="Once">
 			<p>
 				she can be a queen
 				and i can be a frog
@@ -5590,6 +5831,7 @@
 			<h5>23/05/2025 13:28</h5>
 			<h3>Take me to the Shower</h3>
 			<img src="images/tm2ts.webp" alt="Take me to the Shower">
+			<img src="images/tm2ts.webp" alt="Take me to the Shower">
 			<p>
 				[Verse]
 				you keep on hiding from me 
@@ -5635,6 +5877,7 @@
 			<h5>25/03/2025 11:37</h5>
 			<h3>לילה</h3>
 			<img src="images/lyla.webp" alt="לילה">
+			<img src="images/lyla.webp" alt="לילה">
 			<p>
 				הלילה הזה,
 				שום סימן הוא לא נותן
@@ -5653,6 +5896,7 @@
 		<article class="article" data-category="cat2">
 			<h5>02/06/2025 12:4</h5>
 			<h3>טאווילה</h3>
+			<img src="images/tawila.webp" alt="טאווילה">
 			<img src="images/tawila.webp" alt="טאווילה">
 			<p>
 				טה
@@ -5683,6 +5927,7 @@
 			<h5>03/06/2025 23:31</h5>
 			<h3>תביא לה</h3>
 			<img src="images/tavila.webp" alt="תביא לה">
+			<img src="images/tavila.webp" alt="תביא לה">
 			<p>
 				תו
 				תביא לה
@@ -5706,6 +5951,7 @@
 			<h5>07/06/2025 09:51</h5>
 			<h3>חזייה שחורה</h3>
 			<img src="images/bbride.webp" alt="חזייה שחורה">
+			<img src="images/bbride.webp" alt="חזייה שחורה">
 			<p>
 				חזייה שחורה
 				וגופיה כתומה
@@ -5719,6 +5965,7 @@
 		<article class="article" data-category="cat2">
 			<h5>08/06/2025 17:36</h5>
 			<h3>אני אתה והם</h3>
+			<img src="images/iuthem.webp" alt="אני אתה והם">
 			<img src="images/iuthem.webp" alt="אני אתה והם">
 			<p>
 				אתה אוהב נשים יפות
@@ -5751,6 +5998,7 @@
 		<article class="article" data-category="cat1">
 			<h5>02/08/2025 10:32</h5>
 			<h3>בא בול בזמן</h3>
+			<img src="images/ba.webp" alt=">בא בול בזמן">
 			<img src="images/ba.webp" alt=">בא בול בזמן">
 			<p>
 				היא גרה ברחוב דגניה 4
@@ -5865,6 +6113,7 @@
 			<h5>02/08/2025 10:35</h5>
 			<h3>אנדרייטד</h3>
 			<img src="images/undersatde.webp" alt="אנדרייטד">
+			<img src="images/undersatde.webp" alt="אנדרייטד">
 			<p>
 				כמה שאנו חושבים שאנו חכמים
 				אנו רק חצי חכמים
@@ -5898,6 +6147,7 @@
 		<article class="article" data-category="cat2">
 			<h5>27/08/2025 20:35</h5>
 			<h3>~ ממואר מניפסטו ~</h3>
+			<img src="images/mamuar.webp" alt="ממואר מניפסטו">
 			<img src="images/mamuar.webp" alt="ממואר מניפסטו">
 			<p>
 				לא שבאלי לקום בבוקר בכלל
@@ -5989,6 +6239,7 @@
 		<article class="article" data-category="cat2">
 			<h5>29/08/2025 11:30</h5>
 			<h3>מה אתה מחפש?</h3>
+			<img src="images/gam.gif" alt="מה אתה מחפש?">
 			<img src="images/gam.gif" alt="מה אתה מחפש?">
 			<p>
 				מה אתה מחפש?
@@ -6127,6 +6378,7 @@
 			<h5>18/10/2025 11:22</h5>
 			<h3>שנה טובה</h3>
 			<img src="images/hny.webp" alt="שנה טובה">
+			<img src="images/hny.webp" alt="שנה טובה">
 			<p>
 				שינויי מזג האויר הביאו אותי לחשוב
 				שהשנה הזו תתחיל בטוב
@@ -6195,6 +6447,7 @@
 			<h5>18/10/2025 11:48</h5>
 			<h3>בואי נלך להתמזמז בפארק הלאומי</h3>
 			<img src="images/boi.png" alt="בואי נלך להתמזמז בפארק הלאומי">
+			<img src="images/boi.png" alt="בואי נלך להתמזמז בפארק הלאומי">
 			<p>
 				בואי נלך להתמזמז בפארק הלאומי
 				את תנעלי נעלי ספורט ולבוש קייצי
@@ -6233,6 +6486,7 @@
 		<article class="article" data-category="cat1">
 			<h5>18/10/2025 12:18</h5>
 			<h3>עכשיו אני ממשיכה כאילו</h3>
+			<img src="images/nowigo.webp" alt="עכשיו אני ממשיכה כאילו">
 			<img src="images/nowigo.webp" alt="עכשיו אני ממשיכה כאילו">
 			<p>
 				עכשיו אני ממשיכה כאילו
@@ -6312,6 +6566,7 @@
 			<h5>30/10/2025 20:01</h5>
 			<h3>Songs 4 Broken Hearts - sad but happy</h3>
 			<img src="images/sbh.webp" alt="sad but happy">
+			<img src="images/sbh.webp" alt="sad but happy">
 			<p>
 				i am sad
 				but i am happy
@@ -6345,6 +6600,7 @@
 			<h5>21/12/2025 21:11</h5>
 			<h3>אני זקוק</h3>
 			<img src="images/ineed.webp" alt="I want you!">
+			<img src="images/ineed.webp" alt="I want you!">
 			<p>
 				אני זקוק למגע אנושי
 				אני חייב קצת לתת יחס אישי
@@ -6363,6 +6619,7 @@
 		<article class="article" data-category="cat2">
 			<h5>21/12/2025 21:11</h5>
 			<h3>לצאת מהמעגל</h3>
+			<img src="images/gout.webp" alt="לצאת מהמעגל">
 			<img src="images/gout.webp" alt="לצאת מהמעגל">
 			<p>
 				לצאת מהמעגל
@@ -6389,6 +6646,7 @@
 			<h5>21/12/2025 21:11</h5>
 			<h3>יש לי מלאך ששומר עליי</h3>
 			<img src="images/angel.webp" alt="יש לי מלאך ששומר עליי">
+			<img src="images/angel.webp" alt="יש לי מלאך ששומר עליי">
 			<p>
 				יש לי מלאך ששומר עליי
 				יש לי גם כוכב על הרגל שלה
@@ -6404,6 +6662,7 @@
 		<article class="article" data-category="cat2">
 			<h5>21/12/2025 21:11</h5>
 			<h3>יש לי בלב חצי נחמה</h3>
+			<img src="images/halfnehama.webp" alt="יש לי בלב חצי נחמה">
 			<img src="images/halfnehama.webp" alt="יש לי בלב חצי נחמה">
 			<p>
 				יש לי בלב חצי נחמה
@@ -6431,6 +6690,7 @@
 		<article class="article" data-category="cat2">
 			<h5>21/12/2025 21:25</h5>
 			<h3>הביאו את הסוסים המרקדים</h3>
+			<img src="images/bring.png" alt="ברינג און דה דנסינג הורסס">
 			<img src="images/bring.png" alt="ברינג און דה דנסינג הורסס">
 			<p>
 				ברינג און דה דנסינג הורסס
@@ -6495,6 +6755,7 @@
 		<article class="article" data-category="cat2">
 			<h5>01/01/2026 20:57</h5>
 			<h3>בירה נקודה ערב סוף שנה</h3>
+			<img src="images/bira.png" alt="בירה נקודה ערב סוף שנה">
 			<img src="images/bira.png" alt="בירה נקודה ערב סוף שנה">
 			<p>
 				- שעה רישונה
@@ -6604,6 +6865,7 @@
 			<h5>03/01/2026 10:13</h5>
 			<h3>לורחוק מכאן</h3>
 			<img src="images/lo.png" alt="לורחוק מכאן">
+			<img src="images/lo.png" alt="לורחוק מכאן">
 			<p>
 				לורחוק מכאן ישנה בלונדינית חביבה
 				אולי הי בכלל שחורדינית
@@ -6635,6 +6897,8 @@
 			<h5>03/01/2026 13:49</h5>
 			<h3>מכור</h3>
 			<img src="images/machur.jpg" alt="מכור">
+			<h3>מכור</h3>
+			<img src="images/machur.jpg" alt="מכור">
 			<p>
 				הו מכור למוזיקה כמו אופיום
 				משנה את הרגליו באופן קבוע או מי דיי יום
@@ -6651,6 +6915,7 @@
 		<article class="article" data-category="cat1">
 			<h5>10/01/2026 11:43</h5>
 			<h3>קיס מי, פליז מי</h3>
+			<img src="images/kissme.webp" alt="קיס מי, פליז מי">
 			<img src="images/kissme.webp" alt="קיס מי, פליז מי">
 			<p>
 				מדוע כותבים כשעצובים
@@ -6716,6 +6981,7 @@
 			<h5>12/01/2026 21:07</h5>
 			<h3>ספת הפסיכולוג שלי - פרק 1</h3>
 			<img src="images/01.webp" alt="ספת הפסיכולוג שלי - פרק 1">
+			<img src="images/01.webp" alt="ספת הפסיכולוג שלי - פרק 1">
 			<p>
 				נכון שלא הכול בסדר?
 				למה אתה רק מחייך?
@@ -6738,6 +7004,7 @@
 		<article class="article" data-category="cat4">
 			<h5>13/01/2026 20:17</h5>
 			<h3>ספת הפסיכולוג שלי - פרק 2</h3>
+			<img src="images/02.webp" alt="ספת הפסיכולוג שלי - פרק 2">
 			<img src="images/02.webp" alt="ספת הפסיכולוג שלי - פרק 2">
 			<p>
 				<strong>אז מה אתה אומר בעצם?</strong>
@@ -6766,6 +7033,7 @@
 			<h5>14/01/2026 22:24</h5>
 			<h3>ספת הפסיכולוג שלי - פרק 3</h3>
 			<img src="images/03.gif" alt="ספת הפסיכולוג שלי - פרק 3">
+			<img src="images/03.gif" alt="ספת הפסיכולוג שלי - פרק 3">
 			<p>
 				<strong>למה אתה עקשן?</strong>
 				אני עקשן, אני בן זונה, אני מלאך מפוצץ בנתינת חינם, בבזבוז אנרגיה חזקה על בני אדם.
@@ -6790,6 +7058,7 @@
 			<h5>15/01/2026 20:27</h5>
 			<h3>ספת הפסיכולוג שלי - פרק 4</h3>
 			<img src="images/04.webp" alt="ספת הפסיכולוג שלי - פרק 4">
+			<img src="images/04.webp" alt="ספת הפסיכולוג שלי - פרק 4">
 			<p>
 				<strong>איך החיים?</strong>
 				על הקרשים, על הפרצוף, על הפנים.
@@ -6813,6 +7082,7 @@
 		<article class="article" data-category="cat1">
 			<h5>24/01/2026 11:54</h5>
 			<h3>פנטזיה מקומית</h3>
+			<img src="images/funtazy.webp" alt="פנטזיה מקומית">
 			<img src="images/funtazy.webp" alt="פנטזיה מקומית">
 			<p>
 				חודשים של התכתבויות תכולות ומחשבות באות אל סיומם כשהיא כותבת ומודיעה שהיא מגיעה ארצה לחופשה קצרה, לילך מתגוררת בבוסטון ושם היא חיה כעת עם בעלה, אישה נאה, נועזת וחכמה, אש בעיניה וברק בשערה, מזה חודשים שהיא מייחלת להגיע לביקור במקום הולדתה.
@@ -6864,6 +7134,7 @@
 			<h5>31/01/2026 13:38</h5>
 			<h3>מגע</h3>
 			<img src="images/touch.webp" alt="מגע">
+			<img src="images/touch.webp" alt="מגע">
 			<p>
 				אני צריכה מגע
 				אני זקוקה לחיבוק בעמידה
@@ -6909,6 +7180,7 @@
 		<article class="article" data-category="cat1">
 			<h5>21/02/2026 14:05</h5>
 			<h3>היא קמה מוקדם</h3>
+			<img src="images/kama.webp" alt="היא קמה מוקדם">
 			<img src="images/kama.webp" alt="היא קמה מוקדם">
 			<p>
 				איילין קמה מוקדם ומקיצה מיד
@@ -7516,9 +7788,591 @@
 				<strong>בא לי ממש לגמור עליה</strong>
 			</p>
 		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>סודות של מלאכים</h3>
+			<img src="images/sodot.webp" alt="סודות של מלאכים">
+			<p>
+				יש טובים
+				ויש כאלה מצילים
+				יש כאלה שיקחו אותך אל הרקיע
+				ואפילו בין העננים
+				הם יעשו לך נעים
+				הם יניעו את התחת החמוד שלך בריקודים
+				לא צריך להבין את התוכנית
+				פשוט להשתחרר
+				את הרגע לנסר
+				עם קול הגוף
+				ואז לנסוק עם המלאך ששומר עליך בריחוף
+				אחחח איזה הרגשה
+				הרגשה של הר געש
+				וסיפוק מלא בצד הימני של האונה
+				מונסק על ידי מלאי עם יד אומן
+				מעביר בך ויברציות
+				ורגעים גועשים עם תמרות עשן
+				<span></span>
+				ויש את הרעים
+				המלו סתם רעים
+				הם מרושעים
+				יוחלו לך את המוח
+				בכל המובנים
+				הם תופסים אותך ברגעים הכי קשים
+				ופורטים לך על העצבים
+				הם הכי גרועים שיש
+				הם בין אלמוות ולומרגישים כאב
+				מומחים בטיזינג של הרס עצמי
+				הם בלתי מנוצחים
+				הם יקחו אותך וגם אותי
+				מלאכים טובים
+				מלאכים רעים
+				מלאכים מלווים אותך בחיים משיחיים
+				אם בכלל יש מלאכים
+				אז למה הם לונירים?
+				הם בכלל אמיתיים
+				אולי הם בכלל
+				רק מלאכים
+				פנטזיה של במאים
+				של החיים
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>כוכב</h3>
+			<img src="images/starman.webp" alt="כוכב">
+			<p>
+				פעם הייתי כוכב עולה
+				היום אני כוכב שביט
+				כוכב מביט
+				כוכב רחוק
+				כוכב פחות של צחוק
+				כוכב נופל
+				כמו מטאור
+				נעלם
+				וכשחושבים עליי
+				יש אור
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>בין כוכבים</h3>
+			<img src="images/stars.webp" alt="בין כוכבים">
+			<p>
+				כבר חודש מאנפפ בין כוכבים *****
+				לויודע איפו הרושלי
+				ובולע רעלים
+				זה לוטוב
+				זלו לטובה
+				זולו צורת חיים בריאה
+				זומה חלה
+				אזמה אימני חושב שאני
+				כשרון
+				ביום יום אני לומחודד כמו עיפרון
+				יותר שבלוני כמו מגטרון
+				פחות דינמי מאקורדיון
+				מבלפ את עצמי לחידלון
+				חי את החלום
+				שלמי?
+				שלי
+				שלך
+				שלמי יותר מהר אמאלה יש תור כבר מאחוריך
+				אני רוצליות יותר נורמלי במקצת
+				אבל לומסוגליות כמו קול האחרים שסתם הולכים לאט
+				מלך הלטאה זה אני
+				משנה טרנספורמציה מסתגל כמו זיקית
+				אני אשפ
+				מהיר כמו חללית
+				מביט בכל הבינוניים מתקדמים
+				ולמרות שאני הכי גרוע
+				הם הכי טיפשים
+				<span></span>
+				מי בכלל יחולתת עצה
+				אימו לויחול ליות במצבך
+				איך Fשר להרגיש אדם
+				בלי קשר דם
+				איך אפשר להבין בכלל
+				מה מתרחש בגופ אדם
+				אחר
+				<span></span>
+				1 כזה שונה ממך
+				בכל מובן ותצורה
+				אפשר להתחבר
+				לזרום
+				להתמקסם
+				כל מוח נפש וגופ הם DNA
+				הם רק שלך
+				הבנת
+				K
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>סלופי ג'ו</h3>
+			<img src="images/slopi.webp" alt="סלופי">
+			<p>
+				אתה מרעיל את עצמך ללוהרף
+				מכניס רעל מנטלי
+				מאכיל את הגוף בארס
+				אוכל זבל
+				שותה רעל
+				מעשן בעעעע
+				מתיש את הגוף לעייפה
+				מתלתל אותו עד כדי טראומה
+				נותן לו להסתגל
+				לשפוף מתוכו את כל מה שלוFשרי לעכל
+				חי בסוג של מסגרת הורסת
+				את הנפש והגוף במהירות מרדד
+				ומזמין במכונה של האוכל בקומל, סלופי ג'ו בפרנה עם השם עמית בודד
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>להתחיל מחדש</h3>
+			<img src="images/start.webp" alt="להתחיל מחדש">
+			<p>
+				צריך להפסיק אימזה
+				להתחיל מחדש
+				לוחייבים לנרמל את זה
+				פ@וט צריך לזקק אתזה
+				לתת לזה נקודת מבט אחרת
+				לשנות את התסריט בMצע הסרט
+				לפרק פרדיגמה
+				ליצור אניגמה
+				לתבל בריתמיקה
+				בניחוח חזק של מוזיקה
+				צריך
+				כן צריך
+				צריח על בריח!
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>גל גדול</h3>
+			<img src="images/galgadol.webp" alt="גל גדול">
+			<p>
+				גל גדולאני חי בגיבתיים אבל עובד בפתחתקווה
+				שוטה בירה וצייסר ליד בית החולים שיבא
+				קולם רצים ומהירים
+				עוברים בירוק באלחסונים
+				רואה מישו עוברלו באדום
+				מגגביר מהירות לדרוסותו
+				ולהלום
+				מספיק טיפשים יש פו מחול וקול
+				לירותותם ממהרים לעבודה בקוליום של חול
+				מרימפו היי לגל גדול
+				שיבו עכשב ויטלטל את הקורה בגול
+				כנס חמודי כעת תורך
+				תנבה רוש ותביאותה!
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>רוצה</h3>
+			<img src="images/aniroze.webp" alt="רוצה">
+			<p>
+				רוצה לצאת
+				רוצה ללכת
+				מחליק את אצבעותיי על קצה הרוש
+				ממשש את הקרקפת
+				זיכרון מכה מליל האמש
+				כל הדרכים מובילות אל הגלים
+				בעקבותיהם של הציפורים
+				הרגשה אחרת מתפשטת במרחב
+				בארשת של שחר מלווה ברעב
+				אין לדעת מה יצפה הרגע
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>אני</h3>
+			<img src="images/ani.webp" alt="אני">
+			<p>
+				אני נועז
+				אני ביישן
+				גרים אצלי איזה 6 אנשים
+				שונים
+				2 מהם דומיננטיים רוב הזמן
+				הם שונים במהותם
+				אבל מספיק משלימים
+				הם איכשהו מנווטים אותי
+				באמת ובתמים
+				אני אוהב לשתות
+				אוהב לעשן
+				טס מ0 למאה בשתי שניות
+				ונעלם בין העננים
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>נפילות</h3>
+			<img src="images/nefilot.webp" alt="נפילות">
+			<p>
+				יש נפילות כאלה שגורמים לך לחשוב
+				מה בכלל משמעות החיים
+				האם אנו את הזמן מעבירים
+				או באמת חיים
+				חיים
+				לא חיים מבחוץ
+				חיים מבפנים
+				מאושרים
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5>04/11/2024 19:10</h5>
+			<h3>Lyricsys</h3>
+			<img src="images/lyricsys.webp" alt="Lyricsys">
+			<p>
+				You want it all but you can't have it
+				It's in your face but you can't grab it
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				Shooting stars never stop
+				Even when they reach the top
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				שמש במים, ביאליק וגלים
+				ביטלס מלך קירח עם תלתלים
+				גשם בקיץ, פרח, מיתרים
+				Love לאהבה ישירו כל הבקרים
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				Starlight
+				I will be chasing a starlight
+				Until the end of my life
+				I don't know if it's worth it 
+				<span></span>
+				black holes and revelations
+				Our hopes and expectations
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				Shake it like a Polaroid picture! Hey ya!
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				Take your protein pills and put your helmet on
+				Ground Control to Major Tom (ten, nine, eight, seven, six)
+				Commencing countdown, engines on (five, four, three)
+				Check ignition and may God's love be with you (two, one, liftoff)
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				I am the god of hellfire, and I bring you... fire
+				<span></span>
+				When I was a youth I used to burn cali weed in a rizzler-a-rizzler-a-rizzler-a-rizzler-a
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				I hate you
+				Talking to myself
+				Everibody's starin' at me
+				I'm only bleedin'
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				I am just a new boy
+				A stranger in this town
+				Where are all the good times
+				Who's gonna show this stranger around?
+				Ooooooooh I need a dirty woman
+				Ooooooooh I need a dirty girl
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				Run to the bedroom,
+				In the suitcase on the left
+				You'll find my favorite axe
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+				<span></span>
+				we must know, we will know, the truth is we don't know, sometimes we can't know, but in trying to find out we discover new things that will change the world
+				<span></span>
+				⭐️⭐️⭐️⭐️⭐️
+			</p>
+		</article>
+		<article class="article" data-category="cat1">
+			<h5>25/02/2026 21:28</h5>
+			<h3>המלאכיות של צ'ומפי</h3>
+			<img src="images/chompy.webp" alt="המלאכיות של צ'ומפי">
+			<p>
+				היא כזו חמודה
+				למרות שהיא מכוערת
+				או אולי לא ממש יפה
+				הגבות שלה השחורות
+				המשוערות
+				ישר עליך משלטות
+				הן כמעט מתחברות
+				השדיים הקטנים שלה
+				עם הפירסינג בפיטמות
+				מראים שיש עליה דבר מה
+				היא חמודה
+				למרות שהיא לא כך יפה
+				בטח לא כמו חברתה
+				הרוסיה
+				שעם הגוף האתלטי שלה
+				ששטוח כמו קרש גיהוץ פתוח בדירה
+				נראית בכלל בת 25 והיא בת בקושי 18
+				אז היא דיי יפה וחטובה
+				כשהיא ממיסה אותך עם החיוך שלה
+				שהפוך כרגע בגלל הגשר שלה בתנוחה עירומה
+				הזין שלך גדל וגדל כמו טיל בבית הבליעה
+				עמוק והכי אתלטי בפה שלה
+				הכוס שלה חלק ומתרחב לחדירה
+				<img src="images/chompy1.webp" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				אצל החמודה אתה עובר על הגב המשוער
+				והיא דווקא אוהבת בתחת
+				ככה היא הכי חזק גונחת
+				היא כמו התנים של רמת גן בלילה
+				מייללת בגניחה רמה מעומק גרונה
+				שכל השכונה תשמע מצידה
+				מזל שאני מסודר
+				ואני מפעיל את המוזיקה בפלייליסט המסוקס שלי
+				שייעשה לנו רועש ושמח
+				בחדירה רטובה, חזקה, אדירה
+				היא משהו מיוחד כשהיא מגורה
+				הרפתקנית, מלאת תשוקה
+				היא מוציאה אותי מהתחת שלה ובולעת אותי
+				מזיינת אותי עם הפה שלה פתוח פעור
+				עושה לי סיבובים על הלשון מסביב בהנאה
+				היא יונקת את הכובע שלי ואני מתפתה לזיין לה את הפה
+				עמוק ככל האפשר
+				זה רק מדליק אותה ועושה אותה רטובה
+				אני שם לב שהיא שולחת יד אל הכוס שלה
+				ומענגת את עצמה
+				מחדירה אצבעות ובו בזמן אני ממלא את הפה שלה ברוק מהמציצה
+				רשרושי הזין שלי חודר בפאתי הפה שלה עד הגרון מחרמנים אותה
+				אני צובט לה את הפיטמות הקטנות עם הפירסינג שזקורות
+				ומרגיש את הזין שלי מתמלא לה בפה
+				איך הווריד שלי מתנפח
+				מאיים להתפרץ
+				אני חש בתנועת היד שלה עם האצבעות בכוס מתזמנת
+				אני יוצא וגומר לה על הלשון
+				כשאני תוך שניה גומרת ומתפרצת
+				אני מחדיר את הזין שלי שוב לפה החם שלה
+				ומספק לה ויטמינצ'יק חמים וטעים בגרון עד הסוף וזה מגרה אותה מאוד
+				<img src="images/chompy2.gif" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				יש לה שיער חלק כזה והיא תמיד מחייכת לכולם
+				היא ממש טובה
+				ואפילו לא אכפת לה למצוץ את הזין שלך חצי שעה
+				כל עוד תלקק לה את הכוס
+				תאכל את הדגדגן שלה
+				ותביא אותה לפלנטריום
+				לראות כוכבים שמגרים לה את החור של התחת
+				החור של התחת שלה הוא כמו כספת
+				הוא נפתח רק אחרי שהכוס שלה רטוב ממציצה
+				משפריץ גמירה החוצה וגורם לפיטמות שלה להזדקר כמו דובדבן מסוכר
+				ככה אדום
+				ככה עגול
+				ועם כוס רטוב
+				שפותח את החור של התחת
+				ושם טמון הזהב
+				<img src="images/chompy3.webp" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				כשהחור של התחת שלה נפתח היא מקבלת אורגזמות בשרשרת
+				ומחרחרת כמו חתול מיוחם בלילה קר ברחובות לבד
+				הגוף שלה זועק, ספק אותי, תן בי
+				תו לי להוציא את מה שיש בי
+				אחרי ארבע גמירות רצופות שלה בשרשרת היא צריכה קצת מנוחה
+				ובטח שאני אסדר לה את השיער הנעים לקוקו
+				היא נשכבת בסיקוס על הספה
+				מרפה את גופה הלבן ונשמכל לזין שלי לאט
+				מצמידה את הלשון ומתבלת בנשיקה צמודה
+				כשהיא מוצצת אותי פנימה בתנועות עדינות
+				מגדילה אותי בפיה
+				מהעצם היניקה של הזין שלי
+				והנעימי שאני עובר לה בשיער על הקרקפת
+				מבליטים את התחת הלבן שלה העסיסי
+				והתחת הזה שהכספת שלו נפרצה
+				מגיח ובולט מעלה
+				היא מניעה אותו בכוונה לחרמן אותי על הספה
+				יונקת את הזין שלי עמוק והאצבעות שלי נמסות בין שערה
+				היא שואבת את הזין שלי אל פיה החם
+				אני נמס והיד שלי רק עולה ויורדת מהראש שלה
+				אני שולח יד אל אחוריה
+				אני חג סביב החור של התחת שלה והיא בתיאום מושלם
+				מוצצת אותי עמוק אל פיה ובולעת אותי ברעב
+				אני מרטיב את האצבע וחומק שוב אל החור של התחת שלה
+				מחדיר את האצבע שלי פנימה
+				היא יונקת אותי חזק
+				מוצצת אותי בכל הכוח בקול רם
+				אני מוציא את האצבע מוסיף עוד אחת
+				ומחדיר את שתיהן אל הכוס הרטוב, החלק והפעור שלה
+				היא נטרפת
+				היא מריירת
+				על הזין שלי
+				בטירוף של גירוי
+				היא מטריפה
+				היא כה מגורה
+				היא מאיצה בי לגמור אותי בפיה
+				ואני עוזר לה
+				<img src="images/chompy4.webp" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				אני מחדיר את האגודל שלי לתחת שלה
+				וזה מביא אותה לסף עונג בלתי נשלט
+				היא פשוט יונקת את הזין שלי
+				מהגמירה החמה המשפריצה
+				וממגנטת את הכוס והחור של התחת שלה לאצבעות שלי
+				היא כל כך רטובה שם ושם
+				שהיא עוד שניה משפריצה
+				כלים שלובים הם כלים שיש בהם גם אנרגיה כימית, פיזיקלית, מינית
+				היא גומרת ומתפוצצת
+				היא כולה רטובה
+				היא יונקת לי את הזין אל העומק בגרון שלה שוב ומגדילה
+				לא מוציאה לשנייה
+				אני לא מוציא את האצבעות שלי מהכוס שלה עד שהיא רגועה
+				מסתבר שהיא מתה על החדירות העדינות האלה בכוס
+				בדיוק כמו במציצה
+				היא מכורה לליקוקים על הדגדגן
+				אין לי סיכוי לנצח אותה
+				היא גומרת הרבה יותר בלי תחרות בכלל
+				ואני אוהב איך שהיא מחייכת מרוצה
+				<img src="images/chompy5.webp" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				היא התגייסה, הגבוהה, הרוסיה החטובה
+				האתלטית המתוקה
+				איזה גוף יש לה יאממה
+				כמו של רקדנית בלט
+				או כדורעפנים חתיכה
+				הפנים שלה תמיד קורנים
+				הציצים תמיד קטנים וחבויים
+				הרגליים ארוכות
+				והיא חווה עונג בלי קולות
+				איתה זה תמיד אחר
+				כבר כשהיא מגשרת והשדיים הקטנים שלה משבשים לי את הראייה
+				היא כל כך יציבה שאני יכול לשלוח אצבעות לכוס החלק שלה
+				בזמן שהיא מחדירה אותי אל פיה בפעימה אחר פעימה
+				לאט לאט עד הסוף, יונקת במציצה עמוקה
+				אני לא יודע מה לעשות עם שדיים כאלה קטנים
+				אז אני עובד על הפיטמות
+				ועל הכוס שמתחיל להיות רטוב ממש וחלקלק
+				אני שוחה בפה שלה במעמקים פנימה
+				וחושב שאני צריך להיות בכל מקום
+				נוכח
+				ועכשיו
+				אנחנו משחקים את משחק הכוסות
+				3 כוסות
+				מתחת לכל אחד קלף ואחד מלכה
+				מערבבים
+				מזיזים
+				ומגלים
+				איפה המלכה?
+				<img src="images/chompy6.webp" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				היא כזו תמירה וגמישה
+				שאני מפסל ומפסק אותה על השולחן
+				בדיוק למשחק
+				הכוס
+				התחת
+				והפה שלה
+				במיקום מושלם
+				אני חודר אליה מאחורה עמוק בכוס הלח שלה
+				סוחט את הפיטמות הזקורות הקטנות והיא מתגרה מאוד
+				פיטמות זה כמו ז
+				לא חשוב הגודל
+				חשוב העונג
+				אז הפיטמות שלה מגורות גם אם השדיים קטנים
+				הכוס שלה כל כך רטוב ומזמין
+				שאתה פשוט רוצה להשפריץ שם
+				להשפריץ שם כשאתה סוחט את הפיטמות שלה חזק
+				רעד עצום עובר בגוף שלה ושום מילה
+				אני כולי גונח באקסטזה
+				מרוקן את כולי בכוס הרטוב שלה
+				מגיח מקדימה והיא אוספת לי את הכובע אל פיה
+				ושפתיה החמות
+				מוצצת רק אותו
+				עוברת על הזין כמו שואב אבק
+				מלקקת את הווריד ומגיעה אל הביצים
+				היא מלקקת ואוספת אותם בפיה
+				ואני גדל אל פני האף שלה על הפנים
+				כולי זקור ועומד טיל
+				בדיוק כשהיא מסיימת לשחק עם הביצים שלי
+				ומוצצת אותי לאט באקרובטיות פנימה
+				אי אפשר לעמוד ברעש הנעים המגרה הזה
+				של זין מזיין פה רעב
+				פה מוצץ, פה יונק
+				פה רטוב שיונק
+				אני פשוט לא יכול להתאפק
+				והיא גורמת לי לזיין לה את הפה
+				זו התאווה שלה
+				זו המטרה
+				היא דוחפת אותי עם הידיים והציפורניים המעוצבות אל פיה
+				היא ממש מגורה
+				היא מחכה
+				היא גומרת אותי ומצמידה
+				מקפיצה תיקים מהגרון שלה שמקבל הבזקי שפריץ חם ולבן
+				אין לי מושג איך אחרי כמה דקות היא
+				מעמידה אותי קשות
+				הביצים שלי קשיחות
+				הזין שלי מוכן לחדור עמוק לאט ובעדינות הלהט אל החור של התחת שלה
+				הוא כל כך אלסטי
+				<img src="images/chompy7.webp" alt="המלאכיות של צ'ומפי">
+				<span></span>
+				מתאים לאתלטית כמוה
+				החור של התחת שלה נהייה רטוב בשנייה
+				והדרך על השריר שמניע את הטוסיק הקטן הזה קדימה 
+				מטריף ברמה
+				היא בלבל אחר
+				אני מרגיש את זה ממנה
+				היא צריכה גירוי חזק
+				היא צריכה סחיטה
+				אני מלחשש לה בתנוך של האוזן
+				והיא מזיזה אותו ממוגנטת ללשון שלי שמתלקקת סביבה
+				אני תופס את השד הקטן וסוגר לאט על הפיטמה
+				זה מרטיב אותה בכוס
+				אני מרגיש
+				ואני חייב להרגיש אז אני שולח את האצבעות שלי ממתחת לשם
+				זה מרגיש קצת כמו סרט אילם
+				אני דופק לה את התחת ברעש וגועש
+				והיא מעונגת מהתחת ולא פוצחת פה
+				לא מוציאה הגה
+				מחליפה צבעים
+				עוברת עונד של פעם בחיים
+				אני מזיין לה את התחת שמתמגנט אליי ונותן לי קונטרה
+				הכוס שלה רטוב לאצבעות שלי שחודרות אל תוכו עמוק
+				הלשון שלי עושה לה שמות באוזון
+				והפיטמה שלה מזדקרת לי בין האצבעות
+				כשאני סוחט ומוחץ לה את הפיטמה
+				בנקודה הסודית שגיליתי
+				אני חושב שזה מה שגורם לה להחליף צבעים
+				ולפרפר ברעד של אורגזמה
+				אני לא שולט בזה אלא היא
+				ואני מוצא את עצמי עומד מאחוריה וגומר לה בתחת עמוק
+				כשהיא מקבלת ויברציות כאלה
+				שגורמות לך לחייך כמו אידיוט
+				זה פשוט לא יאומן כמה הכוס שלה רטוב אחרי הגמירה בתחת שלה
+				היא כזו ממיסה עם החיוך האדמדם שלה
+				שהיא מביאה את הזין ומעמידה על הפיטמה הימנית שלה
+				אולי גם שם יש תיבה סודית?
+				בלי שום קשר
+				<strong>בא לי ממש לגמור עליה</strong>
+			</p>
+		</article>
 		<!--article class="article" data-category="cat1">
 			<h5></h5>
 			<h3></h3>
+			<img src="images/29075156.jpg" alt="אהבה">
+			<p>
+				<span></span>
+				
+			</p>
+		</article>
+		<article class="article" data-category="cat1">
+			<h5></h5>
+			<h3></h3>
+			<img src="images/29075156.jpg" alt="אהבה">
+			<p>
+				<span></span>
+				
+			</p>
+		</article>
+		<article class="article" data-category="cat2">
+			<h5></h5>
+			<h3></h3>
+			<img src="images/29075156.jpg" alt="אהבה">
 			<img src="images/29075156.jpg" alt="אהבה">
 			<p>
 				<span></span>
