@@ -7269,5 +7269,38 @@
 		});
 	});
 	</script>
-</body>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+		const articles = document.querySelectorAll("article");
+		const batch = 5;
+		let visible = 0;
+
+		articles.forEach(a => a.style.display = "none");
+
+		function showMore() {
+			for (let i = visible; i < visible + batch && i < articles.length; i++) {
+			articles[i].style.display = "block";
+			}
+			visible += batch;
+
+			if (visible >= articles.length) {
+			observer.disconnect();
+			}
+		}
+
+		showMore();
+
+		const trigger = document.createElement("div");
+		trigger.style.height = "1px";
+		document.body.appendChild(trigger);
+
+		const observer = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting) {
+			showMore();
+			}
+		});
+
+		observer.observe(trigger);
+		});
+	</script>
 </html>
