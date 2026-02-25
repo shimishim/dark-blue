@@ -273,6 +273,19 @@
 			.filters button.blue {
 				background: #23338c;
 			}
+
+			.article.read-mark {
+				position: relative;
+			}
+
+			.article.read-mark::after {
+				content: "✔";
+				position: absolute;
+				top: 1rem;
+				left: 2.3rem;
+				color: #4CAF50;
+				font-size: 1.6rem;
+			}
 		}
 
 		@media (min-width: 701px) {
@@ -289,11 +302,10 @@
 <body>
  	<a href="index.html"><h1>כחול <strong>עמוק</strong>, ❥️ של אטישוק</h1></a>
 	<script>
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', function() {
-			navigator.serviceWorker.register('sw.js').catch(function(err){ console.warn('SW registration failed:', err); });
-		});
-	}
+	if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+		navigator.serviceWorker.register('sw.js')
+			.catch(err => console.log('SW registration failed:', err));
+		}
 	</script>
 	<button class="menu-toggle" aria-label="פתח תפריט">
 		☰
@@ -7292,36 +7304,101 @@
 	</script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-		const articles = document.querySelectorAll("article");
 		const batch = 5;
 		let visible = 0;
+		let currentCategory = 'all';
+		const allArticles = Array.from(document.querySelectorAll('.article'));
+		const trigger = document.createElement('div');
+		trigger.id = 'scroll-trigger';
+		trigger.style.height = '1px';
+		document.body.appendChild(trigger);
+		let observer;
 
-		articles.forEach(a => a.style.display = "none");
+		const isMobile = window.innerWidth <= 768;
 
-		function showMore() {
-			for (let i = visible; i < visible + batch && i < articles.length; i++) {
-			articles[i].style.display = "block";
-			}
-			visible += batch;
-
-			if (visible >= articles.length) {
-			observer.disconnect();
-			}
+		function filterVisibleArticles() {
+			return allArticles.filter(a => currentCategory === 'all' || a.dataset.category === currentCategory);
 		}
 
-		showMore();
-
-		const trigger = document.createElement("div");
-		trigger.style.height = "1px";
-		document.body.appendChild(trigger);
-
-		const observer = new IntersectionObserver(entries => {
-			if (entries[0].isIntersecting) {
-			showMore();
+		function resetScroll() {
+			visible = 0;
+			filterVisibleArticles().forEach(a => {
+			a.style.display = 'none';
+			if (isMobile) {
+				a.style.opacity = 0;
+				a.style.transition = 'opacity 0.5s';
 			}
+			});
+		}
+
+		function showMore() {
+			const articles = filterVisibleArticles();
+			for (let i = visible; i < visible + batch && i < articles.length; i++) {
+			const a = articles[i];
+			a.style.display = 'block';
+			if (isMobile) setTimeout(() => { a.style.opacity = 1; }, 50);
+			}
+			visible += batch;
+			if (visible >= articles.length && observer) observer.disconnect();
+		}
+
+		function initObserver() {
+			if (observer) observer.disconnect();
+			observer = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting) showMore();
+			});
+			observer.observe(trigger);
+		}
+
+		function initMobileStart() {
+			const initialArticles = filterVisibleArticles();
+			let start = 0;
+			if (isMobile && initialArticles.length > 3) start = 3;
+			for (let i = 0; i < start; i++) {
+			const a = initialArticles[i];
+			a.style.display = 'block';
+			if (isMobile) a.style.opacity = 1;
+			}
+			visible = start;
+		}
+
+		document.querySelectorAll('.filters button').forEach(btn => {
+			btn.addEventListener('click', function() {
+			const onclickText = btn.getAttribute('onclick') || '';
+			const match = onclickText.match(/filterArticles\('([^']+)'\)/);
+			currentCategory = match ? match[1] : 'all';
+			resetScroll();
+			initMobileStart();
+			initObserver();
+			showMore();
+			});
 		});
 
-		observer.observe(trigger);
+		currentCategory = 'all';
+		resetScroll();
+		initMobileStart();
+		initObserver();
+		showMore();
 		});
+
+
+	document.addEventListener("DOMContentLoaded", () => {
+		if (window.innerWidth > 768) return;
+
+		const stored = JSON.parse(localStorage.getItem("readArticles") || "[]");
+
+		document.querySelectorAll(".article").forEach((a, index) => {
+			const id = index.toString();
+			if (stored.includes(id)) a.classList.add("read-mark");
+			a.addEventListener("click", () => {
+			const list = JSON.parse(localStorage.getItem("readArticles") || "[]");
+			if (!list.includes(id)) {
+				list.push(id);
+				localStorage.setItem("readArticles", JSON.stringify(list));
+				a.classList.add("read-mark");
+			}
+			});
+		});
+	});
 	</script>
 </html>
