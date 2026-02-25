@@ -51,6 +51,7 @@
 			margin: 0;
 			padding: 0;
 			margin-bottom: .5rem;
+			position: relative;
 		}
 		
 		p {
@@ -285,6 +286,31 @@
 				left: 2.3rem;
 				color: #4CAF50;
 				font-size: 1.6rem;
+				opacity: 0;
+				transform: scale(0.7);
+				animation: showCheck 0.3s forwards ease-out;
+			}
+
+			.article.liked h5::before {
+				content: "❤";
+				position: absolute;
+				top: -0.5rem;
+        		left: 2.5rem;
+				color: red;
+				font-size: 1.6rem;
+				opacity: 0;
+				transform: scale(0.7);
+				animation: showLike 0.3s forwards ease-out;
+			}
+
+			@keyframes showCheck {
+				from { opacity: 0; transform: scale(0.7); }
+				to   { opacity: 1; transform: scale(1); }
+			}
+
+			@keyframes showLike {
+				from { opacity: 0; transform: scale(0.7); }
+				to   { opacity: 1; transform: scale(1); }
 			}
 		}
 
@@ -7396,6 +7422,32 @@
 				list.push(id);
 				localStorage.setItem("readArticles", JSON.stringify(list));
 				a.classList.add("read-mark");
+			}
+			});
+		});
+	});
+
+	document.addEventListener("DOMContentLoaded", () => {
+		if (window.innerWidth > 768) return;
+
+		let readList = JSON.parse(localStorage.getItem("readArticles")||"{}");
+		let likedList = JSON.parse(localStorage.getItem("likedArticles")||"{}");
+
+		document.querySelectorAll(".article").forEach((a, index) => {
+			const id = index.toString();
+
+			if (readList[id]) a.classList.add("read-mark");
+			if (likedList[id]) a.classList.add("liked");
+
+			a.addEventListener("click", () => {
+			if (!readList[id]) {
+				readList[id] = true;
+				localStorage.setItem("readArticles", JSON.stringify(readList));
+				a.classList.add("read-mark");
+			} else if (!likedList[id]) {
+				likedList[id] = true;
+				localStorage.setItem("likedArticles", JSON.stringify(likedList));
+				a.classList.add("liked");
 			}
 			});
 		});
