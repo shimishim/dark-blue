@@ -371,8 +371,8 @@
 		<button type="button" onclick="filterArticles('cat2'); setActiveFilter(this)">לב של אטישוק <span class="count" id="count-cat2">0</span></button>
 		<button type="button" class="amsterdam" onclick="filterArticles('cat3'); setActiveFilter(this)">Lost in Amsterdam <span class="count" id="count-cat3">0</span></button>
 		<button type="button" class="spa" onclick="filterArticles('cat4'); setActiveFilter(this)">ספת הפסיכולוג שלי <span class="count" id="count-cat4">0</span></button>
-		<button class="read hidden" type="button" onclick="filterArticles('read'); setActiveFilter(this)">✔ קראתי</button>
-		<button class="like hidden" type="button" onclick="filterArticles('liked'); setActiveFilter(this)">❤ אהבתי</button>
+		<button class="read hidden" type="button" onclick="filterArticles('read'); setActiveFilter(this)">✔ קראתי <span class="count" id="count-read">0</span></button>
+		<button class="like hidden" type="button" onclick="filterArticles('liked'); setActiveFilter(this)">❤ אהבתי <span class="count" id="count-liked">0</span></button>
 		<button class="reset hidden" type="button" onclick="resetAll(); setActiveFilter(this)">🌀 איפוס הכל</button>
 	</div>
 	<script>
@@ -7575,39 +7575,57 @@
 		  function resetAll() {
 				localStorage.removeItem("readArticles");
 				localStorage.removeItem("likedArticles");
-				readList = {};
-				likedList = {};
+
 				articles.forEach(article => {
-					article.classList.remove("read-mark","liked");
-					article.style.display = 'block';
+					article.classList.remove("read-mark", "liked", "show");
+					article.style.display = "block";
 				});
-				buttons.forEach(btn => btn.classList.remove('active'));
-				const allBtn = [...buttons].find(b => b.textContent.includes('הכל'));
-				if (allBtn) allBtn.classList.add('active');
+
+				buttons.forEach(btn => btn.classList.remove("active"));
+
+				const allBtn = [...buttons].find(b => b.textContent.includes("הכל"));
+				if (allBtn) allBtn.classList.add("active");
+
+				updateCounts();
+				filterArticles("all");
 			}
 
 			window.resetAll = resetAll;
+			updateCounts();
 
 		  function updateCounts() {
-			let total = articles.length;
-			let cat1 = 0;
-			let cat2 = 0;
-			let cat3 = 0;
-			let cat4 = 0;
+				let total = articles.length;
+				let cat1 = 0;
+				let cat2 = 0;
+				let cat3 = 0;
+				let cat4 = 0;
 
-			articles.forEach(article => {
-			  if (article.dataset.category === 'cat1') cat1++;
-			  if (article.dataset.category === 'cat2') cat2++;
-			  if (article.dataset.category === 'cat3') cat3++;
-			  if (article.dataset.category === 'cat4') cat4++;
-			});
+				let readList = JSON.parse(localStorage.getItem("readArticles") || "{}");
+				let likedList = JSON.parse(localStorage.getItem("likedArticles") || "{}");
 
-			document.getElementById('count-all').textContent = total;
-			document.getElementById('count-cat1').textContent = cat1;
-			document.getElementById('count-cat2').textContent = cat2;
-			document.getElementById('count-cat3').textContent = cat3;
-			document.getElementById('count-cat4').textContent = cat4;
-		  }
+				let readCount = Object.keys(readList).length;
+				let likedCount = Object.keys(likedList).length;
+
+				articles.forEach(article => {
+					if (article.dataset.category === 'cat1') cat1++;
+					if (article.dataset.category === 'cat2') cat2++;
+					if (article.dataset.category === 'cat3') cat3++;
+					if (article.dataset.category === 'cat4') cat4++;
+				});
+
+				document.getElementById('count-all').textContent = total;
+				document.getElementById('count-cat1').textContent = cat1;
+				document.getElementById('count-cat2').textContent = cat2;
+				document.getElementById('count-cat3').textContent = cat3;
+				document.getElementById('count-cat4').textContent = cat4;
+
+				const readEl = document.getElementById('count-read');
+				const likedEl = document.getElementById('count-liked');
+
+				if (readEl) readEl.textContent = readCount;
+				if (likedEl) likedEl.textContent = likedCount;
+			}
+			window.updateCounts = updateCounts;
 
 		  function filterArticles(category) {
 			let visible = 0;
@@ -7825,6 +7843,7 @@
 					readList[id] = true;
 					localStorage.setItem("readArticles", JSON.stringify(readList));
 					a.classList.add("read-mark");
+					updateCounts();
 					return;
 				}
 
@@ -7832,6 +7851,7 @@
 					likedList[id] = true;
 					localStorage.setItem("likedArticles", JSON.stringify(likedList));
 					a.classList.add("liked");
+					updateCounts();
 				}
 			});
 		});
