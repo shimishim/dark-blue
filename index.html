@@ -276,6 +276,21 @@
 				background: #23338c;
 			}
 
+			.filters button.read {
+				color: #4CAF50;
+				background: #fff;
+			}
+
+			.filters button.reset {
+				color: #3d4dfe;
+				background: #fff;
+			}
+
+			.filters button.like {
+				color: red;
+				background: #fff;
+			}
+
 			.article.read-mark {
 				position: relative;
 			}
@@ -328,7 +343,8 @@
 		}
 
 		@media (min-width: 701px) {
-			.menu-toggle {
+			.menu-toggle,
+			.hidden {
 				display: none;
 			}
 		}
@@ -355,6 +371,9 @@
 		<button type="button" onclick="filterArticles('cat2'); setActiveFilter(this)">לב של אטישוק <span class="count" id="count-cat2">0</span></button>
 		<button type="button" class="amsterdam" onclick="filterArticles('cat3'); setActiveFilter(this)">Lost in Amsterdam <span class="count" id="count-cat3">0</span></button>
 		<button type="button" class="spa" onclick="filterArticles('cat4'); setActiveFilter(this)">ספת הפסיכולוג שלי <span class="count" id="count-cat4">0</span></button>
+		<button class="read hidden" type="button" onclick="filterArticles('read'); setActiveFilter(this)">✔ קראתי</button>
+		<button class="like hidden" type="button" onclick="filterArticles('liked'); setActiveFilter(this)">❤ אהבתי</button>
+		<button class="reset hidden" type="button" onclick="resetAll(); setActiveFilter(this)">🌀 איפוס הכל</button>
 	</div>
 	<script>
 		function setActiveFilter(button) {
@@ -7553,6 +7572,22 @@
 		  const articles = document.querySelectorAll('.article');
 		  const buttons = document.querySelectorAll('.filters button');
 
+		  function resetAll() {
+				localStorage.removeItem("readArticles");
+				localStorage.removeItem("likedArticles");
+				readList = {};
+				likedList = {};
+				articles.forEach(article => {
+					article.classList.remove("read-mark","liked");
+					article.style.display = 'block';
+				});
+				buttons.forEach(btn => btn.classList.remove('active'));
+				const allBtn = [...buttons].find(b => b.textContent.includes('הכל'));
+				if (allBtn) allBtn.classList.add('active');
+			}
+
+			window.resetAll = resetAll;
+
 		  function updateCounts() {
 			let total = articles.length;
 			let cat1 = 0;
@@ -7578,33 +7613,52 @@
 			let visible = 0;
 
 			articles.forEach(article => {
-			  if (category === 'all' || article.dataset.category === category) {
+				const id = [...articles].indexOf(article).toString();
+				const readList = JSON.parse(localStorage.getItem("readArticles") || "{}");
+				const likedList = JSON.parse(localStorage.getItem("likedArticles") || "{}");
+
+				let show = false;
+				if (category === 'all') {
+				show = !readList[id];
+				} else if (category === 'read') {
+				show = !!readList[id];
+				} else if (category === 'liked') {
+				show = !!likedList[id];
+				} else {
+				show = article.dataset.category === category;
+				}
+
+				if (show) {
 				article.style.display = 'block';
 				article.classList.add('show');
 				visible++;
-			  } else {
+				} else {
 				article.classList.remove('show');
 				article.style.display = 'none';
-			  }
+				}
 			});
 
 			const visibleElement = document.getElementById('visible-count');
 			if (visibleElement) {
-			  visibleElement.textContent = visible;
+				visibleElement.textContent = visible;
 			}
 
 			buttons.forEach(btn => btn.classList.remove('active'));
 
 			const activeButton = [...buttons].find(btn => btn.textContent.trim() === category);
 			if (activeButton) {
-			  activeButton.classList.add('active');
+				activeButton.classList.add('active');
 			}
-		  }
+			}
 
 		  window.filterArticles = filterArticles;
 
 		  updateCounts();
-		  filterArticles('all');
+			if (window.innerWidth <= 768) {
+			filterArticles('all');
+			} else {
+			filterArticles('all');
+			}
 
 		});
 		
@@ -7662,7 +7716,30 @@
 		const isMobile = window.innerWidth <= 768;
 
 		function filterVisibleArticles() {
-			return allArticles.filter(a => currentCategory === 'all' || a.dataset.category === currentCategory);
+			const readList = JSON.parse(localStorage.getItem("readArticles") || "{}");
+
+			return allArticles.filter((a, index) => {
+				const id = index.toString();
+
+				if (window.innerWidth <= 768 && currentCategory === 'all') {
+				return !readList[id];
+				}
+
+				if (currentCategory === 'all') {
+				return true;
+				}
+
+				if (currentCategory === 'read') {
+				return !!readList[id];
+				}
+
+				if (currentCategory === 'liked') {
+				const likedList = JSON.parse(localStorage.getItem("likedArticles") || "{}");
+				return !!likedList[id];
+				}
+
+				return a.dataset.category === currentCategory;
+			});
 		}
 
 		function resetScroll() {
@@ -7730,44 +7807,32 @@
 	document.addEventListener("DOMContentLoaded", () => {
 		if (window.innerWidth > 768) return;
 
-		const stored = JSON.parse(localStorage.getItem("readArticles") || "[]");
+		const articles = document.querySelectorAll(".article");
+		let readList = JSON.parse(localStorage.getItem("readArticles") || "{}");
+		let likedList = JSON.parse(localStorage.getItem("likedArticles") || "{}");
 
-		document.querySelectorAll(".article").forEach((a, index) => {
-			const id = index.toString();
-			if (stored.includes(id)) a.classList.add("read-mark");
-			a.addEventListener("click", () => {
-			const list = JSON.parse(localStorage.getItem("readArticles") || "[]");
-			if (!list.includes(id)) {
-				list.push(id);
-				localStorage.setItem("readArticles", JSON.stringify(list));
-				a.classList.add("read-mark");
-			}
-			});
-		});
-	});
-
-	document.addEventListener("DOMContentLoaded", () => {
-		if (window.innerWidth > 768) return;
-
-		let readList = JSON.parse(localStorage.getItem("readArticles")||"{}");
-		let likedList = JSON.parse(localStorage.getItem("likedArticles")||"{}");
-
-		document.querySelectorAll(".article").forEach((a, index) => {
+		articles.forEach((a, index) => {
 			const id = index.toString();
 
 			if (readList[id]) a.classList.add("read-mark");
 			if (likedList[id]) a.classList.add("liked");
 
 			a.addEventListener("click", () => {
-			if (!readList[id]) {
-				readList[id] = true;
-				localStorage.setItem("readArticles", JSON.stringify(readList));
-				a.classList.add("read-mark");
-			} else if (!likedList[id]) {
-				likedList[id] = true;
-				localStorage.setItem("likedArticles", JSON.stringify(likedList));
-				a.classList.add("liked");
-			}
+				readList = JSON.parse(localStorage.getItem("readArticles") || "{}");
+				likedList = JSON.parse(localStorage.getItem("likedArticles") || "{}");
+
+				if (!readList[id]) {
+					readList[id] = true;
+					localStorage.setItem("readArticles", JSON.stringify(readList));
+					a.classList.add("read-mark");
+					return;
+				}
+
+				if (!likedList[id]) {
+					likedList[id] = true;
+					localStorage.setItem("likedArticles", JSON.stringify(likedList));
+					a.classList.add("liked");
+				}
 			});
 		});
 	});
